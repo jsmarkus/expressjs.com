@@ -1,120 +1,81 @@
 @section
-!
 @  h3(id='app.VERB') app.VERB(path, [callback...], callback)
-!
 @
-!
 @  p.
-!
 @    The <code>app.VERB()</code> methods provide the routing functionality
-!
+#    Методы <code>app.МЕТОД()</code> обеспечивают маршрутизацию
 @    in Express, where <strong>VERB</strong> is one of the HTTP verbs, such
-!
+#    в Express; здесь <strong>МЕТОД</strong> - это любой HTTP-метод, например,
 @    as <code>app.post()</code>. Multiple callbacks may be given, all are treated
-!
+#    <code>app.post()</code>. Можно задавать несколько коллбеков, все они расцениваются
 @    equally, and behave just like middleware, with the one exception that
-!
+#    одинаково и ведут себя как прослойка, с одним лишь исключением, что
 @    these callbacks may invoke <code>next('route')</code> to bypass the
-!
+#    эти коллбеки могут вызывать <code>next('маршрут')</code> для того, чтобы избежать вызова
 @    remaining route callback(s). This mechanism can be used to perform pre-conditions
-!
+#    остальных коллбеков. Этот механизм можно использовать для выполнения предварительных проверок
 @    on a route then pass control to subsequent routes when there is no reason to proceed
-!
+#    в обработчике маршрута с возможностью передачи управления на другой маршрут, если
 @    with the route matched.
-!
+#    нет необходимости продолжать нормальную обработку.
 @
-!
 @  p.
-!
 @    The following snippet illustrates the most simple route definition possible. Express
-!
+#    Следующий пример иллюстрирует самое простое определение маршрута. Express
 @    translates the path strings to regular expressions, used internally to match incoming requests.
-!
+#    преобразует URL-строки в регулярные выражения,  которые потом используются внутри для сравнения входящих запросов.
 @    Query strings are <em>not</em> considered when peforming these matches, for example "GET /"
-!
+#    При таком сравнении параметры запросов не учитываются, например следующий маршрут
 @    would match the following route, as would "GET /?name=tobi".
-!
+#    будет срабатывать на оба запроса - и на "GET /", и на "GET /?name=вася".
 @
-!
 @  +js.
-!
 @    app.get('/', function(req, res){
-!
 @      res.send('hello world');
-!
+#      res.send('здравствуй мир');
 @    });
-!
 @
-!
 @  p.
-!
 @    Regular expressions may also be used, and can be useful
-!
+#    Можно также использовать регулярные выражения, особенно
 @    if you have very specific restraints, for example the following
-!
+#    если у вас используются сложные ограниения, например следующее
 @    would match "GET /commits/71dbb9c" as well as "GET /commits/71dbb9c..4c084f9".
-!
+#    будет соответствовать запросам "GET /commits/71dbb9c" и "GET /commits/71dbb9c..4c084f9"
 @
-!
 @  +js.
-!
 @    app.get(/^\/commits\/(\w+)(?:\.\.(\w+))?$/, function(req, res){
-!
 @      var from = req.params[0];
-!
 @      var to = req.params[1] || 'HEAD';
-!
 @      res.send('commit range ' + from + '..' + to);
-!
+#      res.send('диапазон коммитов ' + from + '..' + to);
 @    });
-!
 @
-!
 @  p.
-!
 @    Several callbacks may also be passed, useful for re-using middleware
-!
+#    Можно передавать несколько коллбеков, это полезно при повторном использовании прослоек,
 @    that load resources, perform validations, etc.
-!
+#    которые загружают ресурсы, выполняют валидацию, и т.д.
 @
-!
 @  +js.
-!
 @    app.get('/user/:id', user.load, function(){
-!
 @      // ... 
-!
 @    })
-!
 @
-!
 @  p.
-!
 @    These callbacks may be passed within arrays as well, these arrays are
-!
+#    Эти коллбеки можно также передавать в виде массивов, эти массивы
 @    simply flattened when passed:
-!
+#    просто разворачиваются в плоский список:
 @
-!
 @  +js.
-!
 @    var middleware = [loadForum, loadThread];
-!
 @    
-!
 @    app.get('/forum/:fid/thread/:tid', middleware, function(){
-!
 @      // ...
-!
 @    })
-!
 @    
-!
 @    app.post('/forum/:fid/thread/:tid', middleware, function(){
-!
 @      // ...
-!
 @    })
-!
 @
-!
