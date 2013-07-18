@@ -1,0 +1,37 @@
+!!! 5
+html
+  head
+    title Express - api reference
+    include includes/head
+  body.inner
+    .bar
+    section#content
+      header
+        include includes/logo
+        active = '/api.html'
+        include includes/menu
+
+      include includes/mixins
+      
+      include ru/api/menu
+
+      #right
+        include ru/api/express
+
+        h2 Application
+        a(name='application')
+        include ru/api/app
+      
+        h2 Request
+        a(name='request')
+        include ru/api/req
+
+        h2 Response
+        a(name='response')
+        include ru/api/res
+
+        h2 Middleware
+        a(name='middleware')
+        include ru/api/middleware
+
+    include includes/footer

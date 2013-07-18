@@ -1,0 +1,34 @@
+section
+  h3(id='app.all') app.all(path, [callback...], callback)
+
+  p.
+    Этот метод работает точно так же, как методы <code>app.[get|post|put|del]()</code>
+    однако, он обрабатывает все HTTP-методы.
+
+  p.
+    Этот метод очень полезен для
+    того, чтобы применять общую логику к заданным префиксам или к различным маскам URL.
+    Например, если поместить следующий маршрут выше всех остальных
+    определений маршрутов, он будет требовать, чтобы все маршруты начиная с этой точки
+    требовали авторизации и будет автоматически загружаться пользователь. Следует помнить,
+    что такие коллбеки не должны действовать, как конечные обработчики - <code>loadUser</code>
+    может выполнить задачу, затем вызвать <code>next()</code>, чтобы продолжить выполнение следующих
+    маршрутов.
+
+  +js.
+    app.all('*', requireAuthentication, loadUser);
+
+  p.
+    Или, что эквивалентно:
+
+  +js.
+    app.all('*', requireAuthentication)
+    app.all('*', loadUser);
+
+  p.
+    Another great example of this is white-listed "global" functionality. Here
+    the example is much like before, however only restricting paths prefixed with
+    "/api":
+
+  +js.
+    app.all('/api/*', requireAuthentication);

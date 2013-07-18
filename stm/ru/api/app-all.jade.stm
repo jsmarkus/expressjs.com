@@ -1,0 +1,49 @@
+@section
+@  h3(id='app.all') app.all(path, [callback...], callback)
+@
+@  p.
+@    This method functions just like the <code>app.VERB()</code> methods,
+#    Этот метод работает точно так же, как методы <code>app.[get|post|put|del]()</code>
+@    however it matches all HTTP verbs. 
+#    однако, он обрабатывает все HTTP-методы.
+@
+@  p.
+@    This method is extremely useful for
+#    Этот метод очень полезен для
+@    mapping "global" logic for specific path prefixes or arbitrary matches.
+#    того, чтобы применять общую логику к заданным префиксам или к различным маскам URL.
+@    For example if you placed the following route at the top of all other
+#    Например, если поместить следующий маршрут выше всех остальных
+@    route definitions, it would require that all routes from that point on
+#    определений маршрутов, он будет требовать, чтобы все маршруты начиная с этой точки
+@    would require authentication, and automatically load a user. Keep in mind
+#    требовали авторизации и будет автоматически загружаться пользователь. Следует помнить,
+@    that these callbacks do not have to act as end points, <code>loadUser</code>
+#    что такие коллбеки не должны действовать, как конечные обработчики - <code>loadUser</code>
+@    can perform a task, then <code>next()</code> to continue matching subsequent
+#    может выполнить задачу, затем вызвать <code>next()</code>, чтобы продолжить выполнение следующих
+@    routes.
+#    маршрутов.
+@
+@  +js.
+@    app.all('*', requireAuthentication, loadUser);
+@
+@  p.
+@    Or the equivalent:
+#    Или, что эквивалентно:
+@
+@  +js.
+@    app.all('*', requireAuthentication)
+@    app.all('*', loadUser);
+@  p.
+@    Another great example of this is white-listed "global" functionality. Here
+@    the example is much like before, however only restricting paths prefixed with
+!
+@    "/api":
+!
+@
+!
+@  +js.
+!
+@    app.all('/api/*', requireAuthentication);
+!
