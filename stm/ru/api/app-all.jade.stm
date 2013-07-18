@@ -37,13 +37,10 @@
 @    app.all('*', loadUser);
 @  p.
 @    Another great example of this is white-listed "global" functionality. Here
+#    Другим прекрасным примером можно назвать функционал "белых списков".
 @    the example is much like before, however only restricting paths prefixed with
-!
+#    Пример здесь аналогичен предыдущему, но он просто ограничивает доступ к URL, начинающимся с
 @    "/api":
-!
 @
-!
 @  +js.
-!
 @    app.all('/api/*', requireAuthentication);
-!
