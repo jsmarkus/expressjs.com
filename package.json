@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "dependencies": {
-    "jade": "0.33.0"
+    "jade": "0.33.0",
+    "pony-l10n": "0.0.1"
   }
 }

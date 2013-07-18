@@ -1,6 +1,6 @@
 
 JADE = ./node_modules/.bin/jade
-PONY = pony
+PONY = ./node_modules/.bin/pony
 
 HTML = index.html \
 	api.html \
