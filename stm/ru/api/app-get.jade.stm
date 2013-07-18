@@ -1,26 +1,16 @@
 @section
-!
 @  h3(id='app.get') app.get(name)
-!
 @
-!
 @  p.
-!
 @    Get setting <code>name</code> value.
-!
+#    Получить значение настройки <code>name</code>.
 @
-!
 @  +js.
-!
 @    app.get('title');
-!
 @    // => undefined
-!
 @
-!
 @    app.set('title', 'My Site');
-!
+#    app.set('title', 'Мой сайт');
 @    app.get('title');
-!
 @    // => "My Site"
-!
+#    // => "Мой сайт"
