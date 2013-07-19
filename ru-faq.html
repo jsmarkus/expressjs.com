@@ -1,68 +1,68 @@
 <!DOCTYPE html><html><head><title>Express - faq</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;amp;subset=latin,latin-ext"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script><script src="app.js"></script><script src="retina.js"></script></head><body class="inner"><div class="bar"></div><section id="content"><header><section id="logo"><span class="express">express<em>3.0.0</em></span><span class="description"> 
-web application framework for <a href="http://nodejs.org">node  </a></span></section><nav class="clearfix"><a href="/ru-index.html"> Главная</a><a href="/ru-api.html"> API</a><a href="/ru-guide.html"> Руководство</a><a href="/ru-applications.html"> Приложения</a><a href="/ru-community.html"> Сообщество</a><a href="/ru-faq.html"> FAQ</a></nav></header><div id="faq"><section><h3 id="models">How do I define models?</h3><p>Express has no notion of a database at all, this is
-left up to third-party node modules - allowing you to
-interface with nearly any database.
-</p></section><section><h3 id="auth">How can I authenticate users?</h3><p>This is another opinionated area that Express does not
-venture into, you may use any authentication scheme you wish.
-For a simple username / password scheme view this <a href="https://github.com/visionmedia/express/tree/master/examples/auth">example</a>.
-</p></section><section><h3 id="templates">Which template engines does Express support?</h3><p>Anything that can conform with the <code>(path, locals, callback)</code> signature.
-To normalize template engine interfaces and caching it's recommended to
-check the <a href="https://github.com/visionmedia/consolidate.js">consolidate.js</a>
-project for support. Unlisted template engines may still support the Express
-signature.
-</p></section><section><h3 id="structure">How should I structure my application?</h3><p>There is no true answer to this question, it is highly dependant
-on the scale of your application and the team involved. To be as
-flexible as possible Express makes no assumptions in terms of structure.
-</p><p>Routes and other application-specific logic may live in as many files
-as you wish, in any directory structure you prefer. View the following
-examples for inspiration:
-</p><ul><li><a href="https://github.com/visionmedia/express/blob/master/examples/route-separation/index.js#L19">Route listings</a></li><li><a href="https://github.com/visionmedia/express/blob/master/examples/route-map/index.js#L47">Route map</a></li><li><a href="https://github.com/visionmedia/express/tree/master/examples/route-loading">Route bootstrapping</a></li><li><a href="https://github.com/visionmedia/express/tree/master/examples/mvc">MVC style controllers</a></li></ul><p>Available as well are third-party extensions to Express to simplify some of these patterns:
-</p><ul><li><a href="https://github.com/visionmedia/express-resource">Resourceful routing</a></li><li><a href="https://github.com/visionmedia/express-namespace">Namespaced routing</a></li></ul></section><section><h3 id="multiple-statics">How can I serve statics from several directories?</h3><p>You may typically use any middleware several times 
-within your application. With the following middleware setup and a request
-to "GET /javascripts/jquery.js" would first check "./public/javascripts/jquery.js",
-if it does not exist then the subsequent middleware will check "./files/javascripts/jquery.js".
+web application framework for <a href="http://nodejs.org">node  </a></span></section><nav class="clearfix"><a href="/ru-index.html"> Главная</a><a href="/ru-api.html"> API</a><a href="/ru-guide.html"> Руководство</a><a href="/ru-applications.html"> Приложения</a><a href="/ru-community.html"> Сообщество</a><a href="/ru-faq.html"> FAQ</a></nav></header><div id="faq"><section><h3 id="models">Как создавать модели?</h3><p>В Express нет средств для работы с базами данных, это
+полностью может быть возложено на сторонние модули,
+что даёт возможность работать практически с любыми базами данных.
+</p></section><section><h3 id="auth">Как сделать авторизацию пользователей?</h3><p>Это ещё одна область, в которую Express не вмешивается
+и даёт вам возможность использовать любую схему авторизации.
+Вот <a href="https://github.com/visionmedia/express/tree/master/examples/auth">пример</a> простой авторизации с использованием логина и пароля.
+</p></section><section><h3 id="templates">Какой шаблонизатор использует Express?</h3><p>Любой, лишь бы он поддерживал соглашение о вызове <code>(path, locals, callback)</code>.
+По поводу нормализации интерфейсов шаблонизаторов рекомендую посмотреть в сторону проекта
+<a href="https://github.com/visionmedia/consolidate.js">consolidate.js</a>
+Впрочем, шаблонизаторы могут и не входить в этот список, но всё равно поддерживать
+соглашение о вызове, принятое в Express.
+</p></section><section><h3 id="structure">Какова правильная структура моего приложения?</h3><p>Нет однозначного ответа, это сильно зависит от
+от масштабов вашего проекта и от команды разработчиков.
+Для большей гибкости Express не накладывает никаких требований на структуру.
+</p><p>Маршруты и прочая логика приложение могут лежать в любых файлах,
+с любой структурой директорий. Пускай вас вдохновят следующие
+примеры:
+</p><ul><li><a href="https://github.com/visionmedia/express/blob/master/examples/route-separation/index.js#L19">Перечисление маршрутов</a></li><li><a href="https://github.com/visionmedia/express/blob/master/examples/route-map/index.js#L47">Карта маршрутов</a></li><li><a href="https://github.com/visionmedia/express/tree/master/examples/route-loading">Загрузка маршрутов (прим. перев. - битая ссылка)</a></li><li><a href="https://github.com/visionmedia/express/tree/master/examples/mvc">Контроллеры в стиле MVC</a></li></ul><p>Для упрощения подобных паттернов существуют сторонние расширения Express:
+</p><ul><li><a href="https://github.com/visionmedia/express-resource">роутинг, основанный на REST-ресурсах</a></li><li><a href="https://github.com/visionmedia/express-namespace">роутинг, основанный на пространствах имён</a></li></ul></section><section><h3 id="multiple-statics">Как отдавать статику из нескольких директорий?</h3><p>Обычно можно использовать любую прослойку несколько раз
+внутри приложения. ПРи следующей конфигурации по запросу
+"GET /javascripts/jquery.js" сначала будет проверяться файл "./public/javascripts/jquery.js",
+а потом, если не файл обнаружится, то следубющая прослойка будет проверять "./files/javascripts/jquery.js".
 </p><pre class="js"><code>app.use(express.static('public'));
 app.use(express.static('files'));
-</code></pre></section><setup><h3 id="static-prefix">How can I prefix a pathname for serving statics?</h3><p>Connect's generic "mounting" feature allows you to define
-the pathname "prefix" to which the middleware will be invoked,
-effectively behaving as if that prefix string was never
-part of the path. Suppose if you wanted "GET /files/javascripts/jquery.js",
-you could mount the middleware at "/files", exposing "/javascripts/jquery.js"
-as the <code>req.url</code> allowing the middleware to serve the file:
-</p><pre class="js"><code>app.use('/public', express.static('public'));
-</code></pre></setup><setup><h3 id="migration">How do I migrate my Express 2.x application?</h3><p>Express 2x will likely be supported through to node 1.0 so there's
-no immediate reason to update beyond the refactoring and API changes
-that Express 3x introduces, so if you're happy with 2x feel free
-to remain on that branch. For migration information visit the
-<a href="https://github.com/visionmedia/express/wiki/Migrating-from-2.x-to-3.x">migration</a>
-wiki page, or view a <a href="https://github.com/visionmedia/express/wiki/New-features-in-3.x">list of changes</a> made in 3.x.
-</p></setup><setup><h3 id="404-handling">How do you handle 404s?</h3><p>In Express 404s are not the result of an error, thus the
-error-handler middleware will not capture 404s, this is
-because a 404 is simply the absence of additional work to do,
-in other words Express has executed all middleware / routes
-and found that none of them responded. All you need to
-do is add a middleware at the very bottom below all the others
-to handle a 404:
+</code></pre></section><setup><h3 id="static-prefix">Как можно задать префикс для отдачи статики?</h3><p>Connect умеет "монтировать" прослойки, что позволяет задвать
+"префикс" пути, по которому будет вызвана прослойка,
+при этом префикс с точки зрения самой прослойки
+не будет являться частью пути. Допустим, есть запрос "GET /files/javascripts/jquery.js",
+можно смонтировать прослойку с префиксом "/files", показывая "/javascripts/jquery.js"
+как <code>req.url</code>, что позволяет прослойке отдавать файл:
+</p><pre class="js"><code>app.use('/public', express.static('public')); //(прим. перев.) в оригинале, наверное, опечатка - следует читать так: app.use('/files', express.static('public'));
+</code></pre></setup><setup><h3 id="migration">Как мигрировать приложение с версии Express 2.x?</h3><p>Express 2x скорее всего будет поддерживаться до самого до node 1.0, так что
+особой срочности по обновлению на отрефакторенное API,
+представленное в Express 3x, нет, и если вас устраивает 2x, можете
+оставаться на этой ветке. За информацией о миграции посетите
+страницу вики <a href="https://github.com/visionmedia/express/wiki/Migrating-from-2.x-to-3.x">migration</a>
+или посмотрите <a href="https://github.com/visionmedia/express/wiki/New-features-in-3.x">список изменений</a>, сделанных в 3.x. (Прим. перев. - <a href="http://jsman.ru/2012/10/17/express-2-to-3.html">перевод</a>).
+</p></setup><setup><h3 id="404-handling">Как обрабатывать ошибку 404?</h3><p>В Express 404 не является результатом ошибки, поэтому
+прослойка error-handler не перехватывает 404, это порисходит потому, что
+404 свидетельствует о том, что приложению нечего делать -
+иными словами, Express выполнил все прослойки / маршруты
+и обнаружил, что ни один из них не ответил. Всё, что нужно
+сделать - это добавить слой в самом низу, который бы
+обрабатывал 404:
 </p><pre class="js"><code>app.use(function(req, res, next){
-  res.send(404, 'Sorry cant find that!');
+  res.send(404, 'Здесь никого нет!');
 });
-</code></pre></setup><setup><h3 id="error-handling">How do you setup an error handler in Express?</h3><p>Error-handling middleware are defined just like regular middleware,
-however must be define with an arity of 4, that is the signature
+</code></pre></setup><setup><h3 id="error-handling">Как в Express настроить обработчик ошибок?</h3><p>Прослойка обработки ошибок определяется как и другие прослойки,
+однако она должна быть определена с четырьмя аргументами, вот так
 <code>(err, req, res, next)</code>:
 </p><pre class="js"><code>app.use(function(err, req, res, next){
   console.error(err.stack);
-  res.send(500, 'Something broke!');
+  res.send(500, 'Что-то сломалось!');
 });
-</code></pre><p>View <a href="/guide.html#error-handling">error-handling</a> for more information.
-</p></setup><setup><h3 id="render-html">How do I render plain HTML?</h3><p>You don't! There's no need to "render" HTML with <code>res.render()</code>,
-if you have a specific file you should use <code>res.sendfile()</code>, or
-if you are serving many assets from a directory use the <code>express.static()</code>
+</code></pre><p>Подробнее тут <a href="/ru-guide.html#error-handling">обработка ошибок</a>.
+</p></setup><setup><h3 id="render-html">Как рендерить чистый HTML?</h3><p>Никак! Рендерить HTML с помощью <code>res.render()</code> вообще не надо,
+если есть определённый файл, можно сделать <code>res.sendfile()</code> или
+если нужно отдавать много статики из папки, можно использовать прослойку <code>express.static()</code>
 middleware.
-</p></setup><setup><h3 id="size">How big is the Express codebase?</h3><p>Express is a very small framework, the 3.0.0 release is only
-932 SLOC, and the mandatory portion of Connect which Express
-is built on is only 267 SLOC. The optional middleware bundled
-with Connect add an additional 1143 SLOC, and are lazy loaded
-upon use.</p></setup></div></section><script>var _gaq = _gaq || [];
+</p></setup><setup><h3 id="size">Насколько большая кодовая база у Express?</h3><p>Express - очень маленький фреймворк, релиз 3.0.0 имеет всего
+932 SLOC, а обязательная часть Connect, на базе которой построен
+Express - всего 267 SLOC. Дополнительные прослойки, которые поставляются
+Connect, добавляют к этому 1143 SLOC, и они лениво загружаются
+по мере использования.</p></setup></div></section><script>var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-25235225-1']);
 _gaq.push(['_trackPageview']);
 

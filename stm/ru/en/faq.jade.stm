@@ -61,13 +61,13 @@
 @
 @  ul
 @    li: a(href='https://github.com/visionmedia/express/blob/master/examples/route-separation/index.js#L19') Route listings
-!
+#    li: a(href='https://github.com/visionmedia/express/blob/master/examples/route-separation/index.js#L19') Перечисление маршрутов
 @    li: a(href='https://github.com/visionmedia/express/blob/master/examples/route-map/index.js#L47') Route map
-!
+#    li: a(href='https://github.com/visionmedia/express/blob/master/examples/route-map/index.js#L47') Карта маршрутов
 @    li: a(href='https://github.com/visionmedia/express/tree/master/examples/route-loading') Route bootstrapping
-!
+#    li: a(href='https://github.com/visionmedia/express/tree/master/examples/route-loading') Загрузка маршрутов (прим. перев. - битая ссылка)
 @    li: a(href='https://github.com/visionmedia/express/tree/master/examples/mvc') MVC style controllers
-!
+#    li: a(href='https://github.com/visionmedia/express/tree/master/examples/mvc') Контроллеры в стиле MVC
 @
 @  p.
 @    Available as well are third-party extensions to Express to simplify some of these patterns:
@@ -81,182 +81,137 @@
 @
 @section
 @  h3(id='multiple-statics') How can I serve statics from several directories?
-!
+#  h3(id='multiple-statics') Как отдавать статику из нескольких директорий?
 @
-!
 @  p.
-!
 @    You may typically use any middleware several times 
-!
+#    Обычно можно использовать любую прослойку несколько раз
 @    within your application. With the following middleware setup and a request
-!
+#    внутри приложения. ПРи следующей конфигурации по запросу
 @    to "GET /javascripts/jquery.js" would first check "./public/javascripts/jquery.js",
-!
+#    "GET /javascripts/jquery.js" сначала будет проверяться файл "./public/javascripts/jquery.js",
 @    if it does not exist then the subsequent middleware will check "./files/javascripts/jquery.js".
-!
+#    а потом, если не файл обнаружится, то следубющая прослойка будет проверять "./files/javascripts/jquery.js".
 @
-!
 @  +js.
-!
 @    app.use(express.static('public'));
-!
 @    app.use(express.static('files'));
-!
 @
-!
 @setup
-!
 @  h3(id='static-prefix') How can I prefix a pathname for serving statics?
-!
+#  h3(id='static-prefix') Как можно задать префикс для отдачи статики?
 @  
-!
 @  p.
-!
 @    Connect's generic "mounting" feature allows you to define
-!
+#    Connect умеет "монтировать" прослойки, что позволяет задвать
 @    the pathname "prefix" to which the middleware will be invoked,
-!
+#    "префикс" пути, по которому будет вызвана прослойка,
 @    effectively behaving as if that prefix string was never
-!
+#    при этом префикс с точки зрения самой прослойки
 @    part of the path. Suppose if you wanted "GET /files/javascripts/jquery.js",
-!
+#    не будет являться частью пути. Допустим, есть запрос "GET /files/javascripts/jquery.js",
 @    you could mount the middleware at "/files", exposing "/javascripts/jquery.js"
-!
+#    можно смонтировать прослойку с префиксом "/files", показывая "/javascripts/jquery.js"
 @    as the <code>req.url</code> allowing the middleware to serve the file:
-!
+#    как <code>req.url</code>, что позволяет прослойке отдавать файл:
 @
-!
 @  +js.
-!
 @    app.use('/public', express.static('public'));
-!
+#    app.use('/public', express.static('public')); //(прим. перев.) в оригинале, наверное, опечатка - следует читать так: app.use('/files', express.static('public'));
 @
-!
 @setup
-!
 @  h3(id='migration') How do I migrate my Express 2.x application?
-!
+#  h3(id='migration') Как мигрировать приложение с версии Express 2.x?
 @
-!
 @  p.
-!
 @    Express 2x will likely be supported through to node 1.0 so there's
-!
+#    Express 2x скорее всего будет поддерживаться до самого до node 1.0, так что
 @    no immediate reason to update beyond the refactoring and API changes
-!
+#    особой срочности по обновлению на отрефакторенное API,
 @    that Express 3x introduces, so if you're happy with 2x feel free
-!
+#    представленное в Express 3x, нет, и если вас устраивает 2x, можете
 @    to remain on that branch. For migration information visit the
-!
+#    оставаться на этой ветке. За информацией о миграции посетите
 @    <a href="https://github.com/visionmedia/express/wiki/Migrating-from-2.x-to-3.x">migration</a>
-!
+#    страницу вики <a href="https://github.com/visionmedia/express/wiki/Migrating-from-2.x-to-3.x">migration</a>
 @    wiki page, or view a <a href="https://github.com/visionmedia/express/wiki/New-features-in-3.x">list of changes</a> made in 3.x.
-!
+#    или посмотрите <a href="https://github.com/visionmedia/express/wiki/New-features-in-3.x">список изменений</a>, сделанных в 3.x. (Прим. перев. - <a href="http://jsman.ru/2012/10/17/express-2-to-3.html">перевод</a>).
 @
-!
 @setup
-!
 @  h3(id='404-handling') How do you handle 404s?
-!
+#  h3(id='404-handling') Как обрабатывать ошибку 404?
 @
-!
 @  p.
-!
 @    In Express 404s are not the result of an error, thus the
-!
+#    В Express 404 не является результатом ошибки, поэтому
 @    error-handler middleware will not capture 404s, this is
-!
+#    прослойка error-handler не перехватывает 404, это порисходит потому, что
 @    because a 404 is simply the absence of additional work to do,
-!
+#    404 свидетельствует о том, что приложению нечего делать -
 @    in other words Express has executed all middleware / routes
-!
+#    иными словами, Express выполнил все прослойки / маршруты
 @    and found that none of them responded. All you need to
-!
+#    и обнаружил, что ни один из них не ответил. Всё, что нужно
 @    do is add a middleware at the very bottom below all the others
-!
+#    сделать - это добавить слой в самом низу, который бы
 @    to handle a 404:
-!
+#    обрабатывал 404:
 @
-!
 @  +js.
-!
 @    app.use(function(req, res, next){
-!
 @      res.send(404, 'Sorry cant find that!');
-!
+#      res.send(404, 'Здесь никого нет!');
 @    });
-!
 @
-!
 @setup
-!
 @  h3(id='error-handling') How do you setup an error handler in Express?
-!
+#  h3(id='error-handling') Как в Express настроить обработчик ошибок?
 @
-!
 @  p.
-!
 @    Error-handling middleware are defined just like regular middleware,
-!
+#    Прослойка обработки ошибок определяется как и другие прослойки,
 @    however must be define with an arity of 4, that is the signature
-!
+#    однако она должна быть определена с четырьмя аргументами, вот так
 @    <code>(err, req, res, next)</code>:
-!
 @
-!
 @  +js.
-!
 @    app.use(function(err, req, res, next){
-!
 @      console.error(err.stack);
-!
 @      res.send(500, 'Something broke!');
-!
+#      res.send(500, 'Что-то сломалось!');
 @    });
-!
 @
-!
 @  p.
-!
 @    View <a href="/guide.html#error-handling">error-handling</a> for more information.
-!
+#    Подробнее тут <a href="/ru-guide.html#error-handling">обработка ошибок</a>.
 @
-!
 @setup
-!
 @  h3(id='render-html') How do I render plain HTML?
-!
+#  h3(id='render-html') Как рендерить чистый HTML?
 @  
-!
 @  p.
-!
 @    You don't! There's no need to "render" HTML with <code>res.render()</code>,
-!
+#    Никак! Рендерить HTML с помощью <code>res.render()</code> вообще не надо,
 @    if you have a specific file you should use <code>res.sendfile()</code>, or
-!
+#    если есть определённый файл, можно сделать <code>res.sendfile()</code> или
 @    if you are serving many assets from a directory use the <code>express.static()</code>
-!
+#    если нужно отдавать много статики из папки, можно использовать прослойку <code>express.static()</code>
 @    middleware.
-!
+#
 @
-!
 @setup
-!
 @  h3(id='size') How big is the Express codebase?
-!
+#  h3(id='size') Насколько большая кодовая база у Express?
 @
-!
 @  p.
-!
 @    Express is a very small framework, the 3.0.0 release is only
-!
+#    Express - очень маленький фреймворк, релиз 3.0.0 имеет всего
 @    932 SLOC, and the mandatory portion of Connect which Express
-!
+#    932 SLOC, а обязательная часть Connect, на базе которой построен
 @    is built on is only 267 SLOC. The optional middleware bundled
-!
+#    Express - всего 267 SLOC. Дополнительные прослойки, которые поставляются
 @    with Connect add an additional 1143 SLOC, and are lazy loaded
-!
+#    Connect, добавляют к этому 1143 SLOC, и они лениво загружаются
 @    upon use.
-!
+#    по мере использования.
 @
-!
