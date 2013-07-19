@@ -4,28 +4,43 @@ PONY = ./node_modules/.bin/pony
 
 HTML = index.html \
 	api.html \
-	api-ru.html \
 	guide.html \
-	guide-ru.html \
 	applications.html \
 	community.html \
-	faq.html
+	faq.html\
+	ru-index.html \
+	ru-api.html \
+	ru-guide.html \
+	ru-applications.html \
+	ru-community.html \
+	ru-faq.html
 
 JADE_EN := $(shell find en -type f -name '*.jade')
-STM_RU  := $(patsubst en/%.jade,stm/ru/%.jade.stm,$(JADE_EN))
-JADE_RU := $(patsubst en/%.jade,ru/%.jade,$(JADE_EN))
+JADE_EN := $(JADE_EN) \
+	$(shell find includes -type f -name '*.jade')
+JADE_EN := $(JADE_EN) \
+	index.jade \
+	api.jade \
+	guide.jade \
+	applications.jade \
+	community.jade \
+	faq.jade
+
+STM_RU  := $(patsubst %.jade,stm/ru/%.jade.stm,$(JADE_EN))
+JADE_RU := $(patsubst %.jade,ru/%.jade,$(JADE_EN))
+
 
 docs: $(HTML)
 
-stm: $(STM_RU)
+stm: $(STM_RU) $(STM_RU_ROOT)
 
 ru: $(JADE_RU)
 
-stm/ru/%.jade.stm: en/%.jade
+stm/ru/%.jade.stm: %.jade
 	@mkdir -p $(@D)
 	$(PONY) stm $< $@
 
-ru/%.jade: en/%.jade stm/ru/%.jade.stm
+ru/%.jade: %.jade stm/ru/%.jade.stm
 	@mkdir -p $(@D)
 	$(PONY) translate $^ $@
 
