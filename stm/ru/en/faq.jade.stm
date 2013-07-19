@@ -1,85 +1,65 @@
 @
-!
 @section
-!
 @  h3(id='models') How do I define models?
-!
+#  h3(id='models') Как создавать модели?
 @
-!
 @  p.
-!
 @    Express has no notion of a database at all, this is
-!
+#    В Express нет средств для работы с базами данных, это
 @    left up to third-party node modules - allowing you to
-!
+#    полностью может быть возложено на сторонние модули,
 @    interface with nearly any database.
-!
+#    что даёт возможность работать практически с любыми базами данных.
 @
-!
 @section
-!
 @  h3(id='auth') How can I authenticate users?
-!
+#  h3(id='auth') Как сделать авторизацию пользователей?
 @  
-!
 @  p.
-!
 @    This is another opinionated area that Express does not
-!
+#    Это ещё одна область, в которую Express не вмешивается
 @    venture into, you may use any authentication scheme you wish.
-!
+#    и даёт вам возможность использовать любую схему авторизации.
 @    For a simple username / password scheme view this <a href="https://github.com/visionmedia/express/tree/master/examples/auth">example</a>.
-!
+#    Вот <a href="https://github.com/visionmedia/express/tree/master/examples/auth">пример</a> простой авторизации с использованием логина и пароля.
 @
-!
 @section
-!
 @  h3(id='templates') Which template engines does Express support?
-!
+#  h3(id='templates') Какой шаблонизатор использует Express?
 @
-!
 @  p.
-!
 @    Anything that can conform with the <code>(path, locals, callback)</code> signature.
-!
+#    Любой, лишь бы он поддерживал соглашение о вызове <code>(path, locals, callback)</code>.
 @    To normalize template engine interfaces and caching it's recommended to
-!
+#    По поводу нормализации интерфейсов шаблонизаторов рекомендую посмотреть в сторону проекта
 @    check the <a href="https://github.com/visionmedia/consolidate.js">consolidate.js</a>
-!
+#    <a href="https://github.com/visionmedia/consolidate.js">consolidate.js</a>
 @    project for support. Unlisted template engines may still support the Express
-!
+#    Впрочем, шаблонизаторы могут и не входить в этот список, но всё равно поддерживать
 @    signature.
-!
+#    соглашение о вызове, принятое в Express.
 @
-!
 @section
-!
 @  h3(id='structure') How should I structure my application?
-!
+#  h3(id='structure') Какова правильная структура моего приложения?
 @
-!
 @  p.
-!
 @    There is no true answer to this question, it is highly dependant
-!
+#    Нет однозначного ответа, это сильно зависит от
 @    on the scale of your application and the team involved. To be as
-!
+#    от масштабов вашего проекта и от команды разработчиков.
 @    flexible as possible Express makes no assumptions in terms of structure.
-!
+#    Для большей гибкости Express не накладывает никаких требований на структуру.
 @
-!
 @  p.
-!
 @    Routes and other application-specific logic may live in as many files
-!
+#    Маршруты и прочая логика приложение могут лежать в любых файлах,
 @    as you wish, in any directory structure you prefer. View the following
-!
+#    с любой структурой директорий. Пускай вас вдохновят следующие
 @    examples for inspiration:
-!
+#    примеры:
 @
-!
 @  ul
-!
 @    li: a(href='https://github.com/visionmedia/express/blob/master/examples/route-separation/index.js#L19') Route listings
 !
 @    li: a(href='https://github.com/visionmedia/express/blob/master/examples/route-map/index.js#L47') Route map
@@ -89,23 +69,17 @@
 @    li: a(href='https://github.com/visionmedia/express/tree/master/examples/mvc') MVC style controllers
 !
 @
-!
 @  p.
-!
 @    Available as well are third-party extensions to Express to simplify some of these patterns:
-!
+#    Для упрощения подобных паттернов существуют сторонние расширения Express:
 @
-!
 @  ul
-!
 @    li: a(href='https://github.com/visionmedia/express-resource') Resourceful routing
-!
+#    li: a(href='https://github.com/visionmedia/express-resource') роутинг, основанный на REST-ресурсах
 @    li: a(href='https://github.com/visionmedia/express-namespace') Namespaced routing
-!
+#    li: a(href='https://github.com/visionmedia/express-namespace') роутинг, основанный на пространствах имён
 @
-!
 @section
-!
 @  h3(id='multiple-statics') How can I serve statics from several directories?
 !
 @
