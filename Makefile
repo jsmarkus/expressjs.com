@@ -32,7 +32,7 @@ JADE_RU := $(patsubst %.jade,ru/%.jade,$(JADE_EN))
 
 docs: $(HTML)
 
-stm: $(STM_RU) $(STM_RU_ROOT)
+stm: $(STM_RU)
 
 ru: $(JADE_RU)
 
