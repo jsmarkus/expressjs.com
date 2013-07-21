@@ -1,27 +1,19 @@
 @section
-!
 @  h3(id='intro') Getting started
-!
+#  h3(id='intro') Начало работы
 @
-!
 @  p.
-!
 @    With node installed (<a href="http://nodejs.org/download">download</a>),
-!
+#    Предполагается, что node уже установлен (<a href="http://nodejs.org/download">скачать</a>).
 @    get your first application started by creating a directory somewhere
-!
+#    Давайте создадим первое приложение, для этого создайте директорию где-нибудь
 @    on your machine:
-!
+#    на своей машине:
 @
-!
 @  +js.
-!
 @    $ mkdir hello-world
-!
 @
-!
 @  p.
-!
 @    In this same directory you'll be defining the application "package", which
 !
 @    are no different than any other node package. You'll need a package.json
