@@ -10,12 +10,12 @@ section
     $ mkdir hello-world
 
   p.
-    In this same directory you'll be defining the application "package", which
-    are no different than any other node package. You'll need a package.json
-    file in the directory, with express defined as a dependency. You may use
-    <code>npm info express version</code> to fetch the latest version, it's
-    preferred that you do this instead of "3.x" below to prevent any future
-    surprises.
+    В этой папке вы создадите своё приложение в виде "пакета", это
+    обыкновенный node-овский пакет. Вам понадобится создать файл package.json
+    в своей папке, а express прописать как зависимость. Чтобы узнать последнюю версию,
+    можно воспользоваться командой <code>npm info express version</code>,
+    лучше уазать точную версию, а не "3.x", чтобы потом избежать возможных
+    граблей.
 
   +js.
     {
@@ -29,18 +29,18 @@ section
     }
 
   p.
-    Now that you have a package.json file in this directory you can use
-    <code>npm(1)</code> to install the dependencies, in this case just
+    Теперь, когда у вас в папке есть package.json, можно воспользоваться
+    <code>npm(1)</code> для установки зависимостей, в частности
     Express:
 
   +js.
     $ npm install
 
   p.
-    Once npm finishes you'll have a localized Express 3.x dependency in
-    the ./node_modules directory. You may verify this with <code>npm ls</code>
-    as shown in the following snippet displaying a tree of Express and its
-    own dependencies.
+    Как только npm отработает, в папке ./node_modules появится
+    локально установленный пакет Express 3.x. С помощью <code>npm ls</code>
+    в этом можно убедиться, вы увидите вот такое дерево
+    зависимостей.
 
   +js.
     $ npm ls
@@ -65,19 +65,19 @@ section
         └── mime@1.2.6
 
   p.
-    Now to create the application itself! Create a file named app.js or server.js,
-    whichever you prefer, require express and then create a new application with <code>express()</code>:
+    Пора создать само приложение! Создайте файл app.js или server.js,
+    имя может быть любым, подключите express, а затем создайте экземпляр приложения с помощью <code>express()</code>:
 
   +js.
     var express = require('express');
     var app = express();
 
   p.
-    With the new application instance you can start defining routes via <code>app.VERB()</code>,
-    in this case "GET /" responding with the "Hello World" string. The <code>req</code> and
-    <code>res</code> are the exact same objects that node provides to you, thus you may invoke
-    <code>res.pipe()</code>, <code>req.on('data', callback)</code> and anything else you
-    would do without Express involved.
+    Теперь, когда приложение создано, можно начинать определять маршруты с помощью <code>app.МЕТОД()</code>,
+    в данном случае на запрос "GET /" попытаемся ответить строкой "Hello World". <code>req</code> и
+    <code>res</code> - это те же самые объекты, которые нам предоставляет node, поэтому можно
+    пользоваться привычными <code>res.pipe()</code>, <code>req.on('data', callback)</code> и всё, что можно сделать
+    без использования Express.
 
   +js.
     app.get('/hello.txt', function(req, res){
@@ -88,9 +88,9 @@ section
     });
 
   p.
-    Express augments these objects providing you with higher level
-    methods such as <code>res.send()</code>, which among other things
-    adds the Content-Length for you:
+    Express дополняет эти объекты и даёт нам высокоуровневые методы,
+    например, <code>res.send()</code>, который, кроме прочего,
+    автоматически добавляет заголовок Content-Length:
 
   +js.
     app.get('/hello.txt', function(req, res){
@@ -98,8 +98,8 @@ section
     });
 
   p.
-    Now to bind and listen for connections invoke the <code>app.listen()</code> method,
-    accepting the same arguments as node's <a href="http://nodejs.org/api/net.html#net_server_listen_port_host_backlog_listeninglistener">net.Server#listen()</a>:
+    Теперь, чтобы принимать соединения, вызовите метод <code>app.listen()</code>,
+    который принимает такие же аргументы, что и node-овский <a href="http://nodejs.org/api/net.html#net_server_listen_port_host_backlog_listeninglistener">net.Server#listen()</a>:
 
   +js.
     app.listen(3000);
