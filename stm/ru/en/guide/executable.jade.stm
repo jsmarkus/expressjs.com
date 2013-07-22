@@ -1,5 +1,6 @@
 @section
 @  h3(id='executable') Using express(1) to generate an app
+#  h3(id='executable') Использование express(1) для генерации приложения
 @
 @  p.
 @    Express is bundled with an executable, aptly named <code>express(1)</code>.
