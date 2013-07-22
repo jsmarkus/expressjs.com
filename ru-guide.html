@@ -70,27 +70,27 @@ var app = express();
 </code></pre><p>Теперь, чтобы принимать соединения, вызовите метод <code>app.listen()</code>,
 который принимает такие же аргументы, что и node-овский <a href="http://nodejs.org/api/net.html#net_server_listen_port_host_backlog_listeninglistener">net.Server#listen()</a>:
 </p><pre class="js"><code>app.listen(3000);
-console.log('Listening on port 3000');</code></pre></section><section><h3 id="executable">Using express(1) to generate an app</h3><p>Express is bundled with an executable, aptly named <code>express(1)</code>.
-If you install express globally with npm you'll have it available from anywhere
-on your machine:
+console.log('Listening on port 3000');</code></pre></section><section><h3 id="executable">Using express(1) to generate an app</h3><p>Express поставляется с исполняемым файлом <code>express(1)</code>.
+Если с помощью npm Express установлен глобально, эта команда будет доступна
+отовсюду:
 </p><pre class="js"><code>$ npm install -g express
-</code></pre><p>This tool provides a simple way to get an application skeleton going,
-but has limited scope, for example it supports only a few template engines,
-whereas Express itself supports virtually any template engine built for node.
-Be sure to check out the <code>--help</code>:
+</code></pre><p>Этот инструмент упрощает создание скелета приложения,
+но круг его задач узок. Например, он подерживает не так уж много шаблонизаторов,
+тогда как сам Express поддерживает вообще любые шаблонизаторы для node.
+Обязательно почитайте <code>--help</code>:
 </p><pre class="js"><code>Usage: express [options]
 
 Options:
 
-  -h, --help          output usage information
-  -V, --version       output the version number
-  -s, --sessions      add session support
-  -e, --ejs           add ejs engine support (defaults to jade)
-  -J, --jshtml        add jshtml engine support (defaults to jade)
-  -H, --hogan         add hogan.js engine support
-  -c, --css <engine>  add stylesheet <engine> support (less|stylus) (defaults to plain css)
-  -f, --force         force on non-empty directory</code></pre><p>If you want to generate an application with EJS, Stylus, and session
-support you would simply execute:
+  -h, --help          показать эту справку
+  -V, --version       показать номер версии
+  -s, --sessions      добавить поддержку сессий
+  -e, --ejs           использовать шаблонизатор ejs (по умолчанию используется jade)
+  -J, --jshtml        использовать шаблонизатор jshtml (по умолчанию используется jade)
+  -H, --hogan         использовать шаблонизатор hogan.js
+  -c, --css <engine>  использовать CSS-движок <engine> (less|stylus) (по умолчанию используется простой CSS)
+  -f, --force         выполнить принудительно, если директория непустая</code></pre><p>Если надо сгенерировать приложение с EJS, Stylus и поддержкой сессий,
+можно просто выполнить:
 </p><pre class="js"><code>$ express --sessions --css stylus --ejs myapp
 
 create : myapp
@@ -111,16 +111,16 @@ install dependencies:
   
 run the app:
   $ node app  
-  </code></pre><p>Like any other node application, you must then install the dependencies:
+  </code></pre><p>Как для любого другого node-приложения, нам понадобится установить зависимости:
 </p><pre class="js"><code>$ cd myapp
 $ npm install
-</code></pre><p>Then fire it up!
+</code></pre><p>Запускаем!
 </p><pre class="js"><code>$ node app
-</code></pre><p>That's all you need to get a simple application up and running. Keep in mind
-that Express is not bound to any specific directory structure, these are simply
-a baseline for you to work from. For application structure alternatives be
-sure to view the <a href="https://github.com/visionmedia/express/tree/master/examples">examples</a>
-found in the github repo.</p></section><section><h3 id="error-handling">Error handling</h3><p>Error-handling middleware are defined just like regular middleware,
+</code></pre><p>Вот и всё, что необходимо для создания и запуска простейшего приложения. Не забывайте,
+что Express не привязан к какой-либо структуре директорий, это просто прототип, на который
+можно опираться в начале. Приложения различной структуры показаны
+в <a href="https://github.com/visionmedia/express/tree/master/examples">примерах</a>
+в github-репозитории.</p></section><section><h3 id="error-handling">Error handling</h3><p>Error-handling middleware are defined just like regular middleware,
 however must be defined with an arity of 4, that is the signature
 <code>(err, req, res, next)</code>:
 </p><pre class="js"><code>app.use(function(err, req, res, next){

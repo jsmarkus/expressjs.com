@@ -1,152 +1,100 @@
 @section
-!
 @  h3(id='executable') Using express(1) to generate an app
-!
 @
-!
 @  p.
-!
 @    Express is bundled with an executable, aptly named <code>express(1)</code>.
-!
+#    Express поставляется с исполняемым файлом <code>express(1)</code>.
 @    If you install express globally with npm you'll have it available from anywhere
-!
+#    Если с помощью npm Express установлен глобально, эта команда будет доступна
 @    on your machine:
-!
+#    отовсюду:
 @
-!
 @  +js.
-!
 @    $ npm install -g express
-!
 @
-!
 @  p.
-!
 @    This tool provides a simple way to get an application skeleton going,
-!
+#    Этот инструмент упрощает создание скелета приложения,
 @    but has limited scope, for example it supports only a few template engines,
-!
+#    но круг его задач узок. Например, он подерживает не так уж много шаблонизаторов,
 @    whereas Express itself supports virtually any template engine built for node.
-!
+#    тогда как сам Express поддерживает вообще любые шаблонизаторы для node.
 @    Be sure to check out the <code>--help</code>:
-!
+#    Обязательно почитайте <code>--help</code>:
 @
-!
 @  +js.
-!
 @  
-!
 @    Usage: express [options]
-!
 @
-!
 @    Options:
-!
 @
-!
 @      -h, --help          output usage information
-!
+#      -h, --help          показать эту справку
 @      -V, --version       output the version number
-!
+#      -V, --version       показать номер версии
 @      -s, --sessions      add session support
-!
+#      -s, --sessions      добавить поддержку сессий
 @      -e, --ejs           add ejs engine support (defaults to jade)
-!
+#      -e, --ejs           использовать шаблонизатор ejs (по умолчанию используется jade)
 @      -J, --jshtml        add jshtml engine support (defaults to jade)
-!
+#      -J, --jshtml        использовать шаблонизатор jshtml (по умолчанию используется jade)
 @      -H, --hogan         add hogan.js engine support
-!
+#      -H, --hogan         использовать шаблонизатор hogan.js
 @      -c, --css <engine>  add stylesheet <engine> support (less|stylus) (defaults to plain css)
-!
+#      -c, --css <engine>  использовать CSS-движок <engine> (less|stylus) (по умолчанию используется простой CSS)
 @      -f, --force         force on non-empty directory
-!
+#      -f, --force         выполнить принудительно, если директория непустая
 @  p.
-!
 @    If you want to generate an application with EJS, Stylus, and session
-!
+#    Если надо сгенерировать приложение с EJS, Stylus и поддержкой сессий,
 @    support you would simply execute:
-!
+#    можно просто выполнить:
 @
-!
 @  +js.
-!
 @    $ express --sessions --css stylus --ejs myapp
-!
 @
-!
 @    create : myapp
-!
 @    create : myapp/package.json
-!
 @    create : myapp/app.js
-!
 @    create : myapp/public
-!
 @    create : myapp/public/javascripts
-!
 @    create : myapp/public/images
-!
 @    create : myapp/public/stylesheets
-!
 @    create : myapp/public/stylesheets/style.styl
-!
 @    create : myapp/routes
-!
 @    create : myapp/routes/index.js
-!
 @    create : myapp/views
-!
 @    create : myapp/views/index.ejs
-!
 @
-!
 @    install dependencies:
-!
 @      $ cd myapp && npm install
-!
 @
-!
 @    run the app:
-!
 @      $ node app  
-!
 @
-!
 @  p.
-!
 @    Like any other node application, you must then install the dependencies:
-!
+#    Как для любого другого node-приложения, нам понадобится установить зависимости:
 @
-!
 @  +js.
-!
 @    $ cd myapp
-!
 @    $ npm install
-!
 @
-!
 @  p.
-!
 @   Then fire it up!
-!
+#   Запускаем!
 @
-!
 @  +js.
-!
 @    $ node app
-!
 @
-!
 @  p.
-!
 @    That's all you need to get a simple application up and running. Keep in mind
-!
+#    Вот и всё, что необходимо для создания и запуска простейшего приложения. Не забывайте,
 @    that Express is not bound to any specific directory structure, these are simply
-!
+#    что Express не привязан к какой-либо структуре директорий, это просто прототип, на который
 @    a baseline for you to work from. For application structure alternatives be
-!
+#    можно опираться в начале. Приложения различной структуры показаны
 @    sure to view the <a href="https://github.com/visionmedia/express/tree/master/examples">examples</a>
-!
+#    в <a href="https://github.com/visionmedia/express/tree/master/examples">примерах</a>
 @    found in the github repo.
-!
+#    в github-репозитории.

@@ -2,18 +2,18 @@ section
   h3(id='executable') Using express(1) to generate an app
 
   p.
-    Express is bundled with an executable, aptly named <code>express(1)</code>.
-    If you install express globally with npm you'll have it available from anywhere
-    on your machine:
+    Express поставляется с исполняемым файлом <code>express(1)</code>.
+    Если с помощью npm Express установлен глобально, эта команда будет доступна
+    отовсюду:
 
   +js.
     $ npm install -g express
 
   p.
-    This tool provides a simple way to get an application skeleton going,
-    but has limited scope, for example it supports only a few template engines,
-    whereas Express itself supports virtually any template engine built for node.
-    Be sure to check out the <code>--help</code>:
+    Этот инструмент упрощает создание скелета приложения,
+    но круг его задач узок. Например, он подерживает не так уж много шаблонизаторов,
+    тогда как сам Express поддерживает вообще любые шаблонизаторы для node.
+    Обязательно почитайте <code>--help</code>:
 
   +js.
   
@@ -21,17 +21,17 @@ section
 
     Options:
 
-      -h, --help          output usage information
-      -V, --version       output the version number
-      -s, --sessions      add session support
-      -e, --ejs           add ejs engine support (defaults to jade)
-      -J, --jshtml        add jshtml engine support (defaults to jade)
-      -H, --hogan         add hogan.js engine support
-      -c, --css <engine>  add stylesheet <engine> support (less|stylus) (defaults to plain css)
-      -f, --force         force on non-empty directory
+      -h, --help          показать эту справку
+      -V, --version       показать номер версии
+      -s, --sessions      добавить поддержку сессий
+      -e, --ejs           использовать шаблонизатор ejs (по умолчанию используется jade)
+      -J, --jshtml        использовать шаблонизатор jshtml (по умолчанию используется jade)
+      -H, --hogan         использовать шаблонизатор hogan.js
+      -c, --css <engine>  использовать CSS-движок <engine> (less|stylus) (по умолчанию используется простой CSS)
+      -f, --force         выполнить принудительно, если директория непустая
   p.
-    If you want to generate an application with EJS, Stylus, and session
-    support you would simply execute:
+    Если надо сгенерировать приложение с EJS, Stylus и поддержкой сессий,
+    можно просто выполнить:
 
   +js.
     $ express --sessions --css stylus --ejs myapp
@@ -56,21 +56,21 @@ section
       $ node app  
 
   p.
-    Like any other node application, you must then install the dependencies:
+    Как для любого другого node-приложения, нам понадобится установить зависимости:
 
   +js.
     $ cd myapp
     $ npm install
 
   p.
-   Then fire it up!
+   Запускаем!
 
   +js.
     $ node app
 
   p.
-    That's all you need to get a simple application up and running. Keep in mind
-    that Express is not bound to any specific directory structure, these are simply
-    a baseline for you to work from. For application structure alternatives be
-    sure to view the <a href="https://github.com/visionmedia/express/tree/master/examples">examples</a>
-    found in the github repo.
+    Вот и всё, что необходимо для создания и запуска простейшего приложения. Не забывайте,
+    что Express не привязан к какой-либо структуре директорий, это просто прототип, на который
+    можно опираться в начале. Приложения различной структуры показаны
+    в <a href="https://github.com/visionmedia/express/tree/master/examples">примерах</a>
+    в github-репозитории.
