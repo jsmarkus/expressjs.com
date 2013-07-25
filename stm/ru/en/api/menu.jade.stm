@@ -75,7 +75,8 @@
 @      li: a(href='#res.locals') res.locals
 @      li: a(href='#res.render') res.render()
 @  li#middleware-api
-@    a(href='#middleware') Прослойки
+@    a(href='#middleware') Middleware
+#    a(href='#middleware') Прослойки
 @    ul#middleware-menu
 @      li: a(href='#basicAuth') basicAuth()
 @      li: a(href='#bodyParser') bodyParser()
