@@ -2,35 +2,35 @@ section
   h3(id='app.use') app.use([path], function)
   
   p.
-    Use the given middleware <code>function</code>, with optional mount <code>path</code>,
-    defaulting to "/".
+    Использовать данную прослойку <code>function</code>, опционально смонтировав её под URL-префиксом <code>path</code>
+    (по умолчанию "/").
 
   +js.
     var express = require('express');
     var app = express();
 
-    // simple logger
+    // простой логгер
     app.use(function(req, res, next){
       console.log('%s %s', req.method, req.url);
       next();
     });
 
-    // respond
+    // ответ
     app.use(function(req, res, next){
-      res.send('Hello World');
+      res.send('Привет, мир!');
     });
 
     app.listen(3000);
 
   p.
-    The "mount" path is stripped and is <strong>not</strong> visible
-    to the middleware <code>function</code>. The main effect of this feature is that
-    mounted middleware may operate without code changes regardless of its "prefix"
-    pathname.
+    "Точка монтирования" <code>path</code> в саму прослойку
+    <code>function</code> не передаётся. Предесть в том, что
+    смонтированная прослойка может работать без изменений кода, не зависимо от
+    "префикса" пути.
 
   p.
-    Here's a concrete example, take the typical use-case of serving files in ./public
-    using the <code>express.static()</code> middleware:
+    Ниже приведён типичный пример из жизни - отдачас статики из папки ./public
+    с помощью прослойки <code>express.static()</code>:
 
   +js.
     // GET /javascripts/jquery.js
@@ -39,12 +39,12 @@ section
     app.use(express.static(__dirname + '/public'));
 
   p.
-    Say for example you wanted to prefix all static files with "/static", you could
-    use the "mounting" feature to support this. Mounted middleware functions are <strong>not</strong>
-    invoked unless the <code>req.url</code> contains this prefix, at which point
-    it is stripped when the function is invoked. This affects this function only,
-    subsequent middleware will see <code>req.url</code> with "/static" included
-    unless they are mounted as well.
+    Теперь допустим, что вам нужно задать для статических файлов префикс "/static". Для этого можно
+    исполтьзовать монтирование прослойки. Смонтированная функция прослойки <strong>не</strong> вызывается,
+    если <code>req.url</code> не начинается с префикса, и переданный в эту функцию
+    URL обрезается, чтобы не содержать префикса. Таким он передаётся только в данную функцию,
+    последующие же прослойки увидят <code>req.url</code> вместе с префиксом "/static",
+    если конечно они не смонтированы под этим префиксом.
 
   +js.
     // GET /static/javascripts/jquery.js
@@ -53,33 +53,33 @@ section
     app.use('/static', express.static(__dirname + '/public'));
 
   p.
-    The order of which middleware are "defined" using <code>app.use()</code> is
-    very important, they are invoked sequentially, thus this defines middleware
-    precedence. For example usually <code>express.logger()</code> is the very
-    first middleware you would use, logging every request:
+    Порядок опреления прослоек через <code>app.use()</code> очень важен,
+    поскольку они вызываются в том порядке, в каком были определены.
+    Например, <code>express.logger()</code>, логгирующий запросы часто идёт самой первой
+    прослойкой:
 
   +js.
     app.use(express.logger());
     app.use(express.static(__dirname + '/public'));
     app.use(function(req, res){
-      res.send('Hello');
+      res.send('Привет');
     });
 
   p.
-    Now suppose you wanted ignore logging requests for static files, but to
-    continue logging routes and middleware defined after <code>logger()</code>,
-    you would simply move <code>static()</code> above:
+    Теперь предположим, что мы хотим проигнорировать логгирование запросов для статических файлов,
+    но всё также хотим логгировать их для остальных запросов -
+    для этого можно просто переместить <code>static()</code> выше, чем <code>logger()</code>:
 
   +js.
     app.use(express.static(__dirname + '/public'));
     app.use(express.logger());
     app.use(function(req, res){
-      res.send('Hello');
+      res.send('Привет');
     });
 
   p.
-    Another concrete example would be serving files from multiple directories,
-    giving precedence to "./public" over the others:
+    Другой пример из жизни - это когда нам надо отдавать статику из нескольких директорий,
+    сохраняя более высокий приоритет за директорией "./public":
 
   +js.
     app.use(express.static(__dirname + '/public'));
