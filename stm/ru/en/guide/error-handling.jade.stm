@@ -1,152 +1,96 @@
 @section
-!
 @  h3(id='error-handling') Error handling
-!
+#  h3(id='error-handling') Обработка ошибок
 @
-!
 @  p.
-!
 @    Error-handling middleware are defined just like regular middleware,
-!
+#    Прослойки для обработки ошибок определяются, как и любые другие прослойки,
 @    however must be defined with an arity of 4, that is the signature
-!
+#    но с четырьмя аргументами, в таком виде
 @    <code>(err, req, res, next)</code>:
-!
 @
-!
 @  +js.
-!
 @    app.use(function(err, req, res, next){
-!
 @      console.error(err.stack);
-!
 @      res.send(500, 'Something broke!');
-!
+#      res.send(500, 'Что-то сломалось!');
 @    });
-!
 @
-!
 @  p.
-!
 @    Though not mandatory error-handling middleware are typically defined
-!
+#    Хотя это и не обязательно, прослойки для обработки ошибок определяются
 @    very last, below any other <code>app.use()</code> calls as shown here:
-!
+#    в самом низу, после всех остальных вызовов <code>app.use()</code>, как показано ниже:
 @
-!
 @  +js.
-!
 @    app.use(express.bodyParser());
-!
 @    app.use(express.methodOverride());
-!
 @    app.use(app.router);
-!
 @    app.use(function(err, req, res, next){
-!
 @      // logic
-!
+#      // логика
 @    });
-!
 @
-!
 @  p.
-!
 @    Responses from within these middleware are completely arbitrary. You may
-!
+#    Из таких прослоек можно отдавать любые ответы. Можно отвечать
 @    wish to respond with an HTML error page, a simple message, a JSON string,
-!
+#    HTML-страничкой с ошибкой, простым сообщением, JSON-строкой,
 @    or anything else you prefer.
-!
+#    чем угодно, на своё усмотрение.
 @
-!
 @  p.
-!
 @    For organizational, and higher-level framework purposes you may define
-!
+#    Для лучшей организации высокоуровневого фреймворка, можно определять
 @    several of these error-handling middleware, much like you would with
-!
+#    несколько прослоек обработки ошибок, как впрочем и других прослоек.
 @    regular middleware. For example suppose you wanted to define an error-handler
-!
+#    Например, вам надо объявить один обработчик ошибок
 @    for requests made via XHR, and those without, you might do:
-!
+#    для запросов, сделанных с помощью XHR, другой - для обычных запросов. Вот как это можно сделать:
 @
-!
 @  +js.
-!
 @    app.use(express.bodyParser());
-!
 @    app.use(express.methodOverride());
-!
 @    app.use(app.router);
-!
 @    app.use(logErrors);
-!
 @    app.use(clientErrorHandler);
-!
 @    app.use(errorHandler);
-!
 @
-!
 @  p.
-!
 @    Where the more generic <code>logErrors</code> may write request and
-!
+#    Здесь <code>logErrors</code> может писать информацию о запросе
 @    error information to stderr, loggly, or similar services:
-!
+#    и ошибках в stderr или в loggly или подобные сервисы:
 @
-!
 @  +js.
-!
 @    function logErrors(err, req, res, next) {
-!
 @      console.error(err.stack);
-!
 @      next(err);
-!
 @    }
-!
 @
-!
 @  p.
-!
 @    Where <code>clientErrorHandler</code> is defined as the following, note
-!
+#    Где <code>clientErrorHandler</code> определён, как показано ниже,
 @    that the error is explicitly passed along to the next.
-!
+#    заметьте, что ошибка явным образом передаётся в next.
 @
-!
 @  +js.
-!
 @    function clientErrorHandler(err, req, res, next) {
-!
 @      if (req.xhr) {
-!
 @        res.send(500, { error: 'Something blew up!' });
-!
+#        res.send(500, { error: 'Что-то стряслось!' });
 @      } else {
-!
 @        next(err);
-!
 @      }
-!
 @    }
-!
 @
-!
 @  p.
-!
 @    The following <code>errorHandler</code> "catch-all" implementation may be defined as:
-!
+#    Перехватчик всех ошибок <code>errorHandler</code> может быть реализован так:
 @
-!
 @  +js.
-!
 @    function errorHandler(err, req, res, next) {
-!
 @      res.status(500);
-!
 @      res.render('error', { error: err });
-!
 @    }
-!
