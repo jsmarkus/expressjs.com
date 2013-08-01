@@ -1,5 +1,6 @@
 @section
 @  h3(id='users-online') Users online count
+#  h3(id='users-online') Подсчёт пользователей онлайн
 @
 @  p.
 @    This section details a full (small) application that tracks a users online

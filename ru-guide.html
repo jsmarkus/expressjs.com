@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><title>Express - guide</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;amp;subset=latin,latin-ext"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script><script src="app.js"></script><script src="retina.js"></script></head><body class="inner"><div class="bar"></div><section id="content"><header><section id="logo"><span class="express">express<em>3.0.0</em></span><span class="description"> 
-web application framework for <a href="http://nodejs.org">node  </a></span></section><nav class="clearfix"><a href="/ru-index.html"> Главная</a><a href="/ru-api.html"> API</a><a href="/ru-guide.html"> Руководство</a><a href="/ru-applications.html"> Приложения</a><a href="/ru-community.html"> Сообщество</a><a href="/ru-faq.html"> FAQ</a></nav></header><ul id="menu"><li><ul><li><a href="#intro">Getting started</a></li><li><a href="#executable">express(1) executable</a></li><li><a href="#error-handling">Error handling</a></li><li><a href="#users-online">Users online count</a></li><li><a href="#proxies">Express behind proxies</a></li></ul></li></ul><section><h3 id="intro">Начало работы</h3><p>Предполагается, что node уже установлен (<a href="http://nodejs.org/download">скачать</a>).
+web application framework for <a href="http://nodejs.org">node  </a></span></section><nav class="clearfix"><a href="/ru-index.html"> Главная</a><a href="/ru-api.html"> API</a><a href="/ru-guide.html"> Руководство</a><a href="/ru-applications.html"> Приложения</a><a href="/ru-community.html"> Сообщество</a><a href="/ru-faq.html"> FAQ</a></nav></header><ul id="menu"><li><ul><li><a href="#intro">Начало работы</a></li><li><a href="#executable">Консольная команда express(1)</a></li><li><a href="#error-handling">Обработка ошибок</a></li><li><a href="#users-online">Подсчёт пользователей онлайн</a></li><li><a href="#proxies">Express через прокси</a></li></ul></li></ul><section><h3 id="intro">Начало работы</h3><p>Предполагается, что node уже установлен (<a href="http://nodejs.org/download">скачать</a>).
 Давайте создадим первое приложение, для этого создайте директорию где-нибудь
 на своей машине:
 </p><pre class="js"><code>$ mkdir hello-world
@@ -167,7 +167,7 @@ app.use(errorHandler);
 </p><pre class="js"><code>function errorHandler(err, req, res, next) {
   res.status(500);
   res.render('error', { error: err });
-}</code></pre></section><section><h3 id="users-online">Users online count</h3><p>В этой секции описано небольшое приложение, подсчитывающее количество пользователей онлайн
+}</code></pre></section><section><h3 id="users-online">Подсчёт пользователей онлайн</h3><p>В этой секции описано небольшое приложение, подсчитывающее количество пользователей онлайн
 с помощью <a href="http://redis.io">Redis</a>. Прежде всего,
 создайте файл package.json со всеми зависимостями - одна для клиента Redis,
 другая - для Express. Далее, убедитесь, что Redis установлен
