@@ -2,11 +2,11 @@ section
   h3(id='users-online') Users online count
 
   p.
-    This section details a full (small) application that tracks a users online
-    count using <a href="http://redis.io">Redis</a>. First up you'll need to 
-    create a package.json file containing two dependencies, one for the redis
-    client, another for Express itself. Also make sure you have redis installed
-    and running via <code>$ redis-server</code>.
+    В этой секции описано небольшое приложение, подсчитывающее количество пользователей онлайн
+    с помощью <a href="http://redis.io">Redis</a>. Прежде всего,
+    создайте файл package.json со всеми зависимостями - одна для клиента Redis,
+    другая - для Express. Далее, убедитесь, что Redis установлен
+    и запущен с помощью <code>$ redis-server</code>.
 
   +js.
     {
@@ -19,7 +19,7 @@ section
     }
 
   p.
-    Next you'll need to create an app, and a connection to redis:
+    Теперь надо создать приложение и подключение к Redis:
 
   +js.
     var express = require('express');
@@ -28,11 +28,11 @@ section
     var app = express();
 
   p.
-    Next up is the middleware for tracking online users. Here we'll
-    use sorted sets so that we can query redis for the users
-    online within the last N milliseconds. We do this by passing
-    a timestamp as the member's "score". Note that here we're using
-    the User-Agent string in place of what would normally be a user id.
+    Дальше идёт прослойка для отслеживания пользователей онлайн. Будем использовать
+    упорядоченные множества, чтобы можно было запросить у Redis
+    онлайн пользователей за последние N миллисекунд. Для этого мы передаём
+    отметку времени в качестве весового коэффициента элемента множества. Обратите внимание, что
+    мы используем User-Agent вместо нормального ID пользователя.
 
   +js.
     app.use(function(req, res, next){
@@ -41,11 +41,11 @@ section
     });
 
   p.
-    This next middleware is for fetching the users online
-    in the last minute using <strong>zrevrangebyscore</strong>
-    to fetch with a positive infinite max value so that we're
-    always getting the most recent users, capped with a minimum score
-    of the current timestamp minus 60,000 milliseconds.
+    Следующая прослойка нужна для получения количества пользователей онлайн
+    за последнюю минуту, используя <strong>zrevrangebyscore</strong>
+    для выборки с <code>max = плюс-бесконечность</code>,
+    так что мы всегда получаем наиболее актуальных пользователей, ограниченных
+    <code>min = текушее время - 60000 миллисекунд</code>. (TODO: сделать литературнее, чем у автора)
 
   +js.
     app.use(function(req, res, next){
@@ -59,13 +59,13 @@ section
     });
 
   p.
-    Then finally we use it, and bind to a port! That's
-    all there is to it, visit the app in a few browsers
-    and you'll see the count increase.
+    Тепер можно повесить наше приложение на порт!
+    Чтобы проверить результат, откройте приложение
+    в нескольких браузерах и убедитесь, что счётчик увеличивается.
   
   +js.
     app.get('/', function(req, res){
-      res.send(req.online.length + ' users online');
+      res.send(req.online.length + ' пользователей онлайн');
     });
 
     app.listen(3000);

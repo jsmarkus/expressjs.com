@@ -1,144 +1,92 @@
 @section
-!
 @  h3(id='users-online') Users online count
-!
 @
-!
 @  p.
-!
 @    This section details a full (small) application that tracks a users online
-!
+#    В этой секции описано небольшое приложение, подсчитывающее количество пользователей онлайн
 @    count using <a href="http://redis.io">Redis</a>. First up you'll need to 
-!
+#    с помощью <a href="http://redis.io">Redis</a>. Прежде всего,
 @    create a package.json file containing two dependencies, one for the redis
-!
+#    создайте файл package.json со всеми зависимостями - одна для клиента Redis,
 @    client, another for Express itself. Also make sure you have redis installed
-!
+#    другая - для Express. Далее, убедитесь, что Redis установлен
 @    and running via <code>$ redis-server</code>.
-!
+#    и запущен с помощью <code>$ redis-server</code>.
 @
-!
 @  +js.
-!
 @    {
-!
 @      "name": "app",
-!
 @      "version": "0.0.1",
-!
 @      "dependencies": {
-!
 @        "express": "3.x",
-!
 @        "redis": "*"
-!
 @      }
-!
 @    }
-!
 @
-!
 @  p.
-!
 @    Next you'll need to create an app, and a connection to redis:
-!
+#    Теперь надо создать приложение и подключение к Redis:
 @
-!
 @  +js.
-!
 @    var express = require('express');
-!
 @    var redis = require('redis');
-!
 @    var db = redis.createClient();
-!
 @    var app = express();
-!
 @
-!
 @  p.
-!
 @    Next up is the middleware for tracking online users. Here we'll
-!
+#    Дальше идёт прослойка для отслеживания пользователей онлайн. Будем использовать
 @    use sorted sets so that we can query redis for the users
-!
+#    упорядоченные множества, чтобы можно было запросить у Redis
 @    online within the last N milliseconds. We do this by passing
-!
+#    онлайн пользователей за последние N миллисекунд. Для этого мы передаём
 @    a timestamp as the member's "score". Note that here we're using
-!
+#    отметку времени в качестве весового коэффициента элемента множества. Обратите внимание, что
 @    the User-Agent string in place of what would normally be a user id.
-!
+#    мы используем User-Agent вместо нормального ID пользователя.
 @
-!
 @  +js.
-!
 @    app.use(function(req, res, next){
-!
 @      var ua = req.headers['user-agent'];
-!
 @      db.zadd('online', Date.now(), ua, next);
-!
 @    });
-!
 @
-!
 @  p.
-!
 @    This next middleware is for fetching the users online
-!
+#    Следующая прослойка нужна для получения количества пользователей онлайн
 @    in the last minute using <strong>zrevrangebyscore</strong>
-!
+#    за последнюю минуту, используя <strong>zrevrangebyscore</strong>
 @    to fetch with a positive infinite max value so that we're
-!
+#    для выборки с <code>max = плюс-бесконечность</code>,
 @    always getting the most recent users, capped with a minimum score
-!
+#    так что мы всегда получаем наиболее актуальных пользователей, ограниченных
 @    of the current timestamp minus 60,000 milliseconds.
-!
+#    <code>min = текушее время - 60000 миллисекунд</code>. (TODO: сделать литературнее, чем у автора)
 @
-!
 @  +js.
-!
 @    app.use(function(req, res, next){
-!
 @      var min = 60 * 1000;
-!
 @      var ago = Date.now() - min;
-!
 @      db.zrevrangebyscore('online', '+inf', ago, function(err, users){
-!
 @        if (err) return next(err);
-!
 @        req.online = users;
-!
 @        next();
-!
 @      });
-!
 @    });
-!
 @
-!
 @  p.
-!
 @    Then finally we use it, and bind to a port! That's
-!
+#    Тепер можно повесить наше приложение на порт!
 @    all there is to it, visit the app in a few browsers
-!
+#    Чтобы проверить результат, откройте приложение
 @    and you'll see the count increase.
-!
+#    в нескольких браузерах и убедитесь, что счётчик увеличивается.
 @  
-!
 @  +js.
-!
 @    app.get('/', function(req, res){
-!
 @      res.send(req.online.length + ' users online');
-!
+#      res.send(req.online.length + ' пользователей онлайн');
 @    });
-!
 @
-!
 @    app.listen(3000);
-!
 @
-!
