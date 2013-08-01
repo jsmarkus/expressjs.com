@@ -1,146 +1,92 @@
 @section
-!
 @  h3(id='app.param') app.param([name], callback)
-!
 @  
-!
 @  p.
-!
 @    Map logic to route parameters. For example when <code>:user</code>
-!
+#    Привязать логику к параметру маршрута. Например, если у нас в маршруте
 @    is present in a route path you may map user loading logic to automatically
-!
+#    есть параметр <code>:user</code>, можно привязать логику, которая будет автоматически загружать
 @    provide <code>req.user</code> to the route, or perform validations
-!
+#    пользователя в <code>req.user</code>, либо выполнять валидацию
 @    on the parameter input.
-!
+#    переданного параметра.
 @
-!
 @  p.
-!
 @    The following snippet illustrates how the <code>callback</code>
-!
+#    Следующий пример демонстрирует, что <code>callback</code>
 @    is much like middleware, thus supporting async operations, however
-!
+#    во многом является такой же прослойкой, что даёт возможность работать асинхронно, однако
 @    providing the additional value of the parameter, here named as <code>id</code>.
-!
+#    добавляется ещё один параметр, здесь мы назвали его <code>id</code>.
 @    An attempt to load the user is then performed, assigning <code>req.user</code>,
-!
+#    Далее выполняется попытка загрузить пользователя и присвоить его <code>req.user</code>,
 @    otherwise passing an error to <code>next(err)</code>.
-!
+#    иначе в <code>next(err)</code> передаётся ошибка.
 @
-!
 @  +js.
-!
 @    app.param('user', function(req, res, next, id){
-!
 @      User.find(id, function(err, user){
-!
 @        if (err) {
-!
 @          next(err);
-!
 @        } else if (user) {
-!
 @          req.user = user;
-!
 @          next();
-!
 @        } else {
-!
 @          next(new Error('failed to load user'));
-!
+#          next(new Error('не удалось загрузить пользователя'));
 @        }
-!
 @      });
-!
 @    });
-!
 @
-!
 @  p.
-!
 @    Alternatively you may pass only a <code>callback</code>, in which
-!
+#    Также, можно передать один лишь <code>callback</code>, в которром
 @    case you have the opportunity to alter the <code>app.param()</code> API.
-!
+#    мы можем переопределить API <code>app.param()</code>.
 @    For example the <a href="http://github.com/visionmedia/express-params">express-params</a>
-!
+#    В примере <a href="http://github.com/visionmedia/express-params">express-params</a>
 @    defines the following callback which allows you to restrict parameters to a given
-!
+#    показано как таким образом ограничить параметры
 @    regular expression. 
-!
+#    заданным регулярным выражением.
 @
-!
 @  p.
-!
 @    This example is a bit more advanced, checking if the second argument is a regular
-!
+#    Вот пример посложнее, здесь мы проверяем, является ли второй аргумент регулярным выражением
 @    expression, returning the callback which acts much like the "user" param example.
-!
+#    и возвращаем callback, который действует, как пример с параметром "user". (TODO: при вычитке уточнить!)
 @
-!
 @  +js.
-!
 @    app.param(function(name, fn){
-!
 @      if (fn instanceof RegExp) {
-!
 @        return function(req, res, next, val){
-!
 @          var captures;
-!
 @          if (captures = fn.exec(String(val))) {
-!
 @            req.params[name] = captures;
-!
 @            next();
-!
 @          } else {
-!
 @            next('route');
-!
 @          }
-!
 @        }
-!
 @      }
-!
 @    });
-!
 @
-!
 @  p.
-!
 @    The method could now be used to effectively validate parameters, or also
-!
+#    Метод может использоваться для эффективной валидации параметров, или также
 @    parse them to provide capture groups:
-!
+#    для разбора их с поддержкой групп в регулярном выражении:
 @
-!
 @  +js.
-!
 @    app.param('id', /^\d+$/);
-!
 @
-!
 @    app.get('/user/:id', function(req, res){
-!
 @      res.send('user ' + req.params.id);
-!
 @    });
-!
 @
-!
 @    app.param('range', /^(\w+)\.\.(\w+)?$/);
-!
 @
-!
 @    app.get('/range/:range', function(req, res){
-!
 @      var range = req.params.range;
-!
 @      res.send('from ' + range[1] + ' to ' + range[2]);
-!
 @    });
-!
