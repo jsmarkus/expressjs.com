@@ -627,34 +627,34 @@ the follwing would set the <code>location</code> header to
 </p><pre class="js"><code>res.location('admin')</code></pre></section><section><h3 id="res.charset">res.charset</h3><p>Assign the charset. Defaults to "utf-8".
 </p><pre class="js"><code>res.charset = 'value';
 res.send('<p>some html</p>');
-// => Content-Type: text/html; charset=value</code></pre></section><section><h3 id="res.send">res.send([body|status], [body])</h3><p>Send a response.
-</p><pre class="js"><code>res.send(new Buffer('whoop'));
+// => Content-Type: text/html; charset=value</code></pre></section><section><h3 id="res.send">res.send([body|status], [body])</h3><p>Отправка ответа.
+</p><pre class="js"><code>res.send(new Buffer('пыщь'));
 res.send({ some: 'json' });
-res.send('<p>some html</p>');
-res.send(404, 'Sorry, we cannot find that!');
-res.send(500, { error: 'something blew up' });
+res.send('<p>какой-то html</p>');
+res.send(404, 'Извините, ничего не найдено!!');
+res.send(500, { error: 'что-то сломалось' });
 res.send(200);
-</code></pre><p>This method performs a myriad of
-useful tasks for simple non-streaming responses such
-as automatically assigning the Content-Length unless
-previously defined and providing automatic <em>HEAD</em> and
-HTTP cache freshness support.
-</p><p>When a <code>Buffer</code> is given
-the Content-Type is set to "application/octet-stream"
+</code></pre><p>Этот метод выполняет множество
+полезных задач для простых не-потоковых ответов,
+например, автоматически выставляет Content-Length (если не задано)
+и обеспечивает поддержку <em>HEAD</em>-запросов и
+управляет заголовками кэширования.
+</p><p>Если передан <code>Buffer</code>,
+Content-Type устанавливается в "application/octet-stream"
 unless previously defined as shown below:
 </p><pre class="js"><code>res.set('Content-Type', 'text/html');
-res.send(new Buffer('<p>some html</p>'));
-</code></pre><p>When a <code>String</code> is given the
-Content-Type is set defaulted to "text/html":
-</p><pre class="js"><code>res.send('<p>some html</p>');
-</code></pre><p>When an <code>Array</code> or <code>Object</code> is
-given Express will respond with the JSON representation:
-</p><pre class="js"><code>res.send({ user: 'tobi' })
+res.send(new Buffer('<p>какой-то html</p>'));
+</code></pre><p>Когда передана строка,
+Content-Type устанавливается в "text/html":
+</p><pre class="js"><code>res.send('<p>какой-то html</p>');
+</code></pre><p>Когда передан <code>Array</code> или <code>Object</code>
+Express ответит JSON-представлением:
+</p><pre class="js"><code>res.send({ user: 'вася' })
 res.send([1,2,3])
-</code></pre><p>Finally when a <code>Number</code> is given without
-any of the previously mentioned bodies, then a response
-body string is assigned for you. For example 200 will
-respond will the text "OK", and 404 "Not Found" and so on.
+</code></pre><p>Наконец, когда передано число
+и больше ничего, тело ответа
+будет сгенерировано. Например, для кода 200
+ответ будет "OK", для 404 - "Not Found" и т.д.
 </p><pre class="js"><code>res.send(200)
 res.send(404)
 res.send(500)</code></pre></section><section><h3 id="res.json">res.json([status|body], [body])</h3><p>Send a JSON response. This method is identical

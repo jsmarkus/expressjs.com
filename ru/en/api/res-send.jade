@@ -2,52 +2,52 @@ section
   h3(id='res.send') res.send([body|status], [body])
   
   p.
-    Send a response.
+    Отправка ответа.
 
   +js.
-    res.send(new Buffer('whoop'));
+    res.send(new Buffer('пыщь'));
     res.send({ some: 'json' });
-    res.send('<p>some html</p>');
-    res.send(404, 'Sorry, we cannot find that!');
-    res.send(500, { error: 'something blew up' });
+    res.send('<p>какой-то html</p>');
+    res.send(404, 'Извините, ничего не найдено!!');
+    res.send(500, { error: 'что-то сломалось' });
     res.send(200);
 
   p.
-    This method performs a myriad of
-    useful tasks for simple non-streaming responses such
-    as automatically assigning the Content-Length unless
-    previously defined and providing automatic <em>HEAD</em> and
-    HTTP cache freshness support.
+    Этот метод выполняет множество
+    полезных задач для простых не-потоковых ответов,
+    например, автоматически выставляет Content-Length (если не задано)
+    и обеспечивает поддержку <em>HEAD</em>-запросов и
+    управляет заголовками кэширования.
 
   p.
-    When a <code>Buffer</code> is given
-    the Content-Type is set to "application/octet-stream"
+    Если передан <code>Buffer</code>,
+    Content-Type устанавливается в "application/octet-stream"
     unless previously defined as shown below:
 
   +js.
     res.set('Content-Type', 'text/html');
-    res.send(new Buffer('<p>some html</p>'));
+    res.send(new Buffer('<p>какой-то html</p>'));
 
   p.
-    When a <code>String</code> is given the
-    Content-Type is set defaulted to "text/html":
+    Когда передана строка,
+    Content-Type устанавливается в "text/html":
 
   +js.
-    res.send('<p>some html</p>');
+    res.send('<p>какой-то html</p>');
 
   p.
-    When an <code>Array</code> or <code>Object</code> is
-    given Express will respond with the JSON representation:
+    Когда передан <code>Array</code> или <code>Object</code>
+    Express ответит JSON-представлением:
 
   +js.
-    res.send({ user: 'tobi' })
+    res.send({ user: 'вася' })
     res.send([1,2,3])
 
   p.
-    Finally when a <code>Number</code> is given without
-    any of the previously mentioned bodies, then a response
-    body string is assigned for you. For example 200 will
-    respond will the text "OK", and 404 "Not Found" and so on.
+    Наконец, когда передано число
+    и больше ничего, тело ответа
+    будет сгенерировано. Например, для кода 200
+    ответ будет "OK", для 404 - "Not Found" и т.д.
 
   +js.
     res.send(200)
