@@ -1,40 +1,33 @@
 @section
-!
 @  h3(id='proxies') Express behind proxies
-!
+#  h3(id='proxies') Express через прокси
 @
-!
 @  p.
-!
 @    Using Express behind a reverse proxy such as Varnish or Nginx
-!
+#    Express можно использовать через реверс-прокси (Varnish или Nginx),
 @    is trivial, however it does require configuration. By enabling the "trust proxy" setting via 
-!
+#    и это просто, хотя и требует конфигурирования. Включите настройку "trust proxy"
 @    <code>app.enable('trust proxy')</code>,  Express will have knowledge that
-!
+#    через <code>app.enable('trust proxy')</code>, чтобы Express знал, что
 @    it's sitting behind a proxy and that the <code>X-Forwarded-*</code> header
-!
+#    он работает через прокси и заголовок <code>X-Forwarded-*</code>
 @    fields may be trusted, which otherwise may be easily spoofed.
-!
+#    будет приниматься во внимания, а не расцениваться поддельным.
 @
-!
 @  p.
-!
 @    Enabling this setting has several subtle effects. The first of which is
-!
+#    Есть ещё несколько небольших эффектов, вызываемых включением этой настройки. Во-первых,
 @    that <code>X-Forwarded-Proto</code> may be set by the reverse proxy to
-!
+#    через заголовок <code>X-Forwarded-Proto</code> прокси может сообщить
 @    tell the app that it is https or simply http. This value is reflected
-!
+#    приложению, протокол - HTTPS или HTTP. Это значение доступно через
 @    by <a href="/api#req.protocol">req.protocol</a>.
-!
+#    <a href="/ru-api#req.protocol">req.protocol</a>.
 @
-!
 @  p.
-!
 @    The second change this makes is the <a href="/api#req.ip">req.ip</a> 
-!
+#    Второе изменение - это то, что значения <a href="/ru-api#req.ip">req.ip</a>
 @    and <a href="/api#req.ips">req.ips</a> values will be populated with
-!
+#    и <a href="/api#req.ips">req.ips</a> заполняются из
 @    <code>X-Forwarded-For</code>'s list of addresses. 
-!
+#    списка адресов в <code>X-Forwarded-For</code>.

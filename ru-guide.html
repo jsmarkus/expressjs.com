@@ -215,18 +215,18 @@ var app = express();
   res.send(req.online.length + ' пользователей онлайн');
 });
 
-app.listen(3000);</code></pre></section><section><h3 id="proxies">Express behind proxies</h3><p>Using Express behind a reverse proxy such as Varnish or Nginx
-is trivial, however it does require configuration. By enabling the "trust proxy" setting via 
-<code>app.enable('trust proxy')</code>,  Express will have knowledge that
-it's sitting behind a proxy and that the <code>X-Forwarded-*</code> header
-fields may be trusted, which otherwise may be easily spoofed.
-</p><p>Enabling this setting has several subtle effects. The first of which is
-that <code>X-Forwarded-Proto</code> may be set by the reverse proxy to
-tell the app that it is https or simply http. This value is reflected
-by <a href="/api#req.protocol">req.protocol</a>.
-</p><p>The second change this makes is the <a href="/api#req.ip">req.ip</a> 
-and <a href="/api#req.ips">req.ips</a> values will be populated with
-<code>X-Forwarded-For</code>'s list of addresses. </p></section></section><script>var _gaq = _gaq || [];
+app.listen(3000);</code></pre></section><section><h3 id="proxies">Express через прокси</h3><p>Express можно использовать через реверс-прокси (Varnish или Nginx),
+и это просто, хотя и требует конфигурирования. Включите настройку "trust proxy"
+через <code>app.enable('trust proxy')</code>, чтобы Express знал, что
+он работает через прокси и заголовок <code>X-Forwarded-*</code>
+будет приниматься во внимания, а не расцениваться поддельным.
+</p><p>Есть ещё несколько небольших эффектов, вызываемых включением этой настройки. Во-первых,
+через заголовок <code>X-Forwarded-Proto</code> прокси может сообщить
+приложению, протокол - HTTPS или HTTP. Это значение доступно через
+<a href="/ru-api#req.protocol">req.protocol</a>.
+</p><p>Второе изменение - это то, что значения <a href="/ru-api#req.ip">req.ip</a>
+и <a href="/api#req.ips">req.ips</a> заполняются из
+списка адресов в <code>X-Forwarded-For</code>.</p></section></section><script>var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-25235225-1']);
 _gaq.push(['_trackPageview']);
 
