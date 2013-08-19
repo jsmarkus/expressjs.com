@@ -2,22 +2,22 @@ section
   h3(id='res.format') res.format(object)
   
   p.
-    Performs content-negotiation on the request Accept header
-    field when present. This method uses <code>req.accepted</code>, an array of
-    acceptable types ordered by their quality values, otherwise the
-    first callback is invoked. When no match is performed the server
-    responds with 406 "Not Acceptable", or invokes the <code>default</code>
-    callback.
+    Выполняет согласование содержания (content negotiation) для заголовка запроса Accept,
+    если таковой имеется. Этот метод использует <code>req.accepted</code>, массив
+    приемлемых типов, упорядоченных по качественным коэффициентам, иначе
+    вызывается первый коллбек. Если ничего не подошло, сервер отвечает
+    кодом 406 "Not Acceptable", или вызывает
+    коллбек <code>default</code>.
 
   p.
-    The Content-Type is set for you when a callback is selected,
-    however you may alter this within the callback using <code>res.set()</code>
-    or <code>res.type()</code> etcetera.
+    Когда коллбек выбран, устанавливается заголовок ответа Content-Type,
+    хотя его можно переопределить с помощью <code>res.set()</code>
+    или <code>res.type()</code> и т.д.
 
   p.
-    The following example would respond with <code>{ "message": "hey" }</code>
-    when the Accept header field is set to "application/json" or "*/json",
-    however if "*/*" is given then "hey" will be the response.
+    В следующем примере мы будем отвечать <code>{ "message": "hey" }</code>,
+    когда заголовок Accept установлен в "application/json" или "*/json",
+    а если он установлен в "*/*", то мы ответим "hey".
 
   +js.
     res.format({
@@ -35,9 +35,9 @@ section
     });
 
   p.
-    In addition to canonicalized MIME types you may also
-    use extnames mapped to these types, providing a slightly
-    less verbose implementation:
+    Кроме стандартных MIME типов можно также
+    использовать краткие имена, так будет
+    более читабельно:
 
   +js.
     res.format({

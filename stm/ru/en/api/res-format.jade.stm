@@ -1,112 +1,71 @@
 @section
-!
 @  h3(id='res.format') res.format(object)
-!
 @  
-!
 @  p.
-!
 @    Performs content-negotiation on the request Accept header
-!
+#    Выполняет согласование содержания (content negotiation) для заголовка запроса Accept,
 @    field when present. This method uses <code>req.accepted</code>, an array of
-!
+#    если таковой имеется. Этот метод использует <code>req.accepted</code>, массив
 @    acceptable types ordered by their quality values, otherwise the
-!
+#    приемлемых типов, упорядоченных по качественным коэффициентам, иначе
 @    first callback is invoked. When no match is performed the server
-!
+#    вызывается первый коллбек. Если ничего не подошло, сервер отвечает
 @    responds with 406 "Not Acceptable", or invokes the <code>default</code>
-!
+#    кодом 406 "Not Acceptable", или вызывает
 @    callback.
-!
+#    коллбек <code>default</code>.
 @
-!
 @  p.
-!
 @    The Content-Type is set for you when a callback is selected,
-!
+#    Когда коллбек выбран, устанавливается заголовок ответа Content-Type,
 @    however you may alter this within the callback using <code>res.set()</code>
-!
+#    хотя его можно переопределить с помощью <code>res.set()</code>
 @    or <code>res.type()</code> etcetera.
-!
+#    или <code>res.type()</code> и т.д.
 @
-!
 @  p.
-!
 @    The following example would respond with <code>{ "message": "hey" }</code>
-!
+#    В следующем примере мы будем отвечать <code>{ "message": "hey" }</code>,
 @    when the Accept header field is set to "application/json" or "*/json",
-!
+#    когда заголовок Accept установлен в "application/json" или "*/json",
 @    however if "*/*" is given then "hey" will be the response.
-!
+#    а если он установлен в "*/*", то мы ответим "hey".
 @
-!
 @  +js.
-!
 @    res.format({
-!
 @      'text/plain': function(){
-!
 @        res.send('hey');
-!
 @      },
-!
 @    
-!
 @      'text/html': function(){
-!
 @        res.send('<p>hey</p>');
-!
 @      },
-!
 @    
-!
 @      'application/json': function(){
-!
 @        res.send({ message: 'hey' });
-!
 @      }
-!
 @    });
-!
 @
-!
 @  p.
-!
 @    In addition to canonicalized MIME types you may also
-!
+#    Кроме стандартных MIME типов можно также
 @    use extnames mapped to these types, providing a slightly
-!
+#    использовать краткие имена, так будет
 @    less verbose implementation:
-!
+#    более читабельно:
 @
-!
 @  +js.
-!
 @    res.format({
-!
 @      text: function(){
-!
 @        res.send('hey');
-!
 @      },
-!
 @    
-!
 @      html: function(){
-!
 @        res.send('<p>hey</p>');
-!
 @      },
-!
 @    
-!
 @      json: function(){
-!
 @        res.send({ message: 'hey' });
-!
 @      }
-!
 @    });
-!
 @  
-!
