@@ -586,31 +586,31 @@ to sign the value.
 object.</p></section><section><h3 id="res.clearCookie">res.clearCookie(name, [options])</h3><p>Clear cookie <code>name</code>. The <code>path</code>
 option defaults to "/".
 </p><pre class="js"><code>res.cookie('name', 'tobi', { path: '/admin' });
-res.clearCookie('name', { path: '/admin' });</code></pre></section><section><h3 id="res.redirect">res.redirect([status], url)</h3><p>Redirect to the given <code>url</code> with optional <code>status</code> code
-defaulting to 302 "Found".
+res.clearCookie('name', { path: '/admin' });</code></pre></section><section><h3 id="res.redirect">res.redirect([status], url)</h3><p>Перенаправляет на заданный <code>url</code> со статусом 302, либо заданным через
+<code>status</code>.
 </p><pre class="js"><code>res.redirect('/foo/bar');
 res.redirect('http://example.com');
 res.redirect(301, 'http://example.com');
 res.redirect('../login');
-</code></pre><p>Express supports a few forms of redirection, first being
-a fully qualified URI for redirecting to a different site:
+</code></pre><p>Express поддерживает несколько форм перенаправления,
+первая - это полный URI для перенаправления на другой сайт:
 </p><pre class="js"><code>res.redirect('http://google.com');
-</code></pre><p>The second form is the pathname-relative redirect, for example
-if you were on <code>http://example.com/admin/post/new</code>, the 
-following redirect to <code>/admin</code> would land you at <code>http://example.com/admin</code>:
+</code></pre><p>Вторая форма - это относительное перенаправление, например,
+если вы были на <code>http://example.com/admin/post/new</code>,
+следующее перенаправление на <code>/admin</code> перенаправит вас на <code>http://example.com/admin</code>:
 </p><pre class="js"><code>res.redirect('/admin');
-</code></pre><p>This next redirect is relative to the <code>mount</code> point of the application. For example
-if you have a blog application mounted at <code>/blog</code>, ideally it has no knowledge of
-where it was mounted, so where a redirect of <code>/admin/post/new</code> would simply give you
-<code>http://example.com/admin/post/new</code>, the following mount-relative redirect would give
-you <code>http://example.com/blog/admin/post/new</code>:
+</code></pre><p>Следующее перенаправление относительно точки монтирования приложения - <code>mount</code>. Например,
+если у вас есть блог-приложение, смонтированное на <code>/blog</code>, в идеале оно не должно знать
+куда оно смонтировано. Перенаправление на <code>/admin/post/new</code> привело бы вас на
+<code>http://example.com/admin/post/new</code>, но в следующем примере перенаправление из смонтированного приложения
+приведёт вас на <code>http://example.com/blog/admin/post/new</code>:
 </p><pre class="js"><code>res.redirect('admin/post/new');
-</code></pre><p>Pathname relative redirects are also possible. If you were
-on <code>http://example.com/admin/post/new</code>, the following redirect
-would land you at <code>http//example.com/admin/post</code>:
+</code></pre><p>Также бывают перенаправления, относительные к пути. Если вы были
+на <code>http://example.com/admin/post/new</code>, следующее перенаправление
+приведёт вас на <code>http//example.com/admin/post</code>:
 </p><pre class="js"><code>res.redirect('..');
-</code></pre><p>The final special-case is a <code>back</code> redirect, redirecting back to
-the Referer (or Referrer), defaulting to <code>/</code> when missing.
+</code></pre><p>Последний особый случай - это перенаправление <code>back</code>, приводящее назад
+к пути, взятому из заголовка Referer (или Referrer). В случае отсутствия заголовка по умолчанию это <code>/</code>.
 </p><pre class="js"><code>res.redirect('back');
 
 </code></pre></section><section><h3 id="res.location">res.location</h3><p>Set the location header.

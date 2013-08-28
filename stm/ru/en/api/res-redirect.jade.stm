@@ -1,108 +1,71 @@
 @section
-!
 @  h3(id='res.redirect') res.redirect([status], url)
-!
 @  p.
-!
 @    Redirect to the given <code>url</code> with optional <code>status</code> code
-!
+#    Перенаправляет на заданный <code>url</code> со статусом 302, либо заданным через
 @    defaulting to 302 "Found".
-!
+#    <code>status</code>.
 @
-!
 @  +js.
-!
 @    res.redirect('/foo/bar');
-!
 @    res.redirect('http://example.com');
-!
 @    res.redirect(301, 'http://example.com');
-!
 @    res.redirect('../login');
-!
 @
-!
 @  p.
-!
 @    Express supports a few forms of redirection, first being
-!
+#    Express поддерживает несколько форм перенаправления,
 @    a fully qualified URI for redirecting to a different site:
-!
+#    первая - это полный URI для перенаправления на другой сайт:
 @
-!
 @  +js.
-!
 @    res.redirect('http://google.com');
-!
 @
-!
 @  p.
-!
 @    The second form is the pathname-relative redirect, for example
-!
+#    Вторая форма - это относительное перенаправление, например,
 @    if you were on <code>http://example.com/admin/post/new</code>, the 
-!
+#    если вы были на <code>http://example.com/admin/post/new</code>,
 @    following redirect to <code>/admin</code> would land you at <code>http://example.com/admin</code>:
-!
+#    следующее перенаправление на <code>/admin</code> перенаправит вас на <code>http://example.com/admin</code>:
 @
-!
 @  +js.
-!
 @    res.redirect('/admin');
-!
 @
-!
 @  p.
-!
 @    This next redirect is relative to the <code>mount</code> point of the application. For example
-!
+#    Следующее перенаправление относительно точки монтирования приложения - <code>mount</code>. Например,
 @    if you have a blog application mounted at <code>/blog</code>, ideally it has no knowledge of
-!
+#    если у вас есть блог-приложение, смонтированное на <code>/blog</code>, в идеале оно не должно знать
 @    where it was mounted, so where a redirect of <code>/admin/post/new</code> would simply give you
-!
+#    куда оно смонтировано. Перенаправление на <code>/admin/post/new</code> привело бы вас на
 @    <code>http://example.com/admin/post/new</code>, the following mount-relative redirect would give
-!
+#    <code>http://example.com/admin/post/new</code>, но в следующем примере перенаправление из смонтированного приложения
 @    you <code>http://example.com/blog/admin/post/new</code>:
-!
+#    приведёт вас на <code>http://example.com/blog/admin/post/new</code>:
 @
-!
 @  +js.
-!
 @    res.redirect('admin/post/new');
-!
 @
-!
 @  p.
-!
 @    Pathname relative redirects are also possible. If you were
-!
+#    Также бывают перенаправления, относительные к пути. Если вы были
 @    on <code>http://example.com/admin/post/new</code>, the following redirect
-!
+#    на <code>http://example.com/admin/post/new</code>, следующее перенаправление
 @    would land you at <code>http//example.com/admin/post</code>:
-!
+#    приведёт вас на <code>http//example.com/admin/post</code>:
 @
-!
 @  +js.
-!
 @    res.redirect('..');
-!
 @
-!
 @  p.
-!
 @    The final special-case is a <code>back</code> redirect, redirecting back to
-!
+#    Последний особый случай - это перенаправление <code>back</code>, приводящее назад
 @    the Referer (or Referrer), defaulting to <code>/</code> when missing.
-!
+#    к пути, взятому из заголовка Referer (или Referrer). В случае отсутствия заголовка по умолчанию это <code>/</code>.
 @
-!
 @  +js.
-!
 @    res.redirect('back');
-!
 @  
-!
 @    
-!
 @
-!
