@@ -22,12 +22,12 @@
 @    tell the app that it is https or simply http. This value is reflected
 #    приложению, протокол - HTTPS или HTTP. Это значение доступно через
 @    by <a href="/api#req.protocol">req.protocol</a>.
-#    <a href="/ru-api#req.protocol">req.protocol</a>.
+#    <a href="./ru-api#req.protocol">req.protocol</a>.
 @
 @  p.
 @    The second change this makes is the <a href="/api#req.ip">req.ip</a> 
-#    Второе изменение - это то, что значения <a href="/ru-api#req.ip">req.ip</a>
+#    Второе изменение - это то, что значения <a href="./ru-api#req.ip">req.ip</a>
 @    and <a href="/api#req.ips">req.ips</a> values will be populated with
-#    и <a href="/api#req.ips">req.ips</a> заполняются из
+#    и <a href="./ru-api#req.ips">req.ips</a> заполняются из
 @    <code>X-Forwarded-For</code>'s list of addresses. 
 #    списка адресов в <code>X-Forwarded-For</code>.

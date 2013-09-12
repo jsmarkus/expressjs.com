@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><title>Express - faq</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;amp;subset=latin,latin-ext"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script><script src="app.js"></script><script src="retina.js"></script></head><body class="inner"><div class="bar"></div><section id="content"><header><section id="logo"><span class="express">express<em>3.0.0</em></span><span class="description"> 
-web application framework for <a href="http://nodejs.org">node  </a></span></section><nav class="clearfix"><a href="/ru-index.html"> Главная</a><a href="/ru-api.html"> API</a><a href="/ru-guide.html"> Руководство</a><a href="/ru-applications.html"> Приложения</a><a href="/ru-community.html"> Сообщество</a><a href="/ru-faq.html"> FAQ</a></nav></header><div id="faq"><section><h3 id="models">Как создавать модели?</h3><p>В Express нет средств для работы с базами данных, это
+web application framework for <a href="http://nodejs.org">node  </a></span></section><nav class="clearfix"><a href="./ru-index.html"> Главная</a><a href="./ru-api.html"> API</a><a href="./ru-guide.html"> Руководство</a><a href="./ru-applications.html"> Приложения</a><a href="./ru-community.html"> Сообщество</a><a href="./ru-faq.html"> FAQ</a></nav></header><div id="faq"><section><h3 id="models">Как создавать модели?</h3><p>В Express нет средств для работы с базами данных, это
 полностью может быть возложено на сторонние модули,
 что даёт возможность работать практически с любыми базами данных.
 </p></section><section><h3 id="auth">Как сделать авторизацию пользователей?</h3><p>Это ещё одна область, в которую Express не вмешивается
@@ -53,7 +53,7 @@ app.use(express.static('files'));
   console.error(err.stack);
   res.send(500, 'Что-то сломалось!');
 });
-</code></pre><p>Подробнее тут <a href="/ru-guide.html#error-handling">обработка ошибок</a>.
+</code></pre><p>Подробнее тут <a href="./ru-guide.html#error-handling">обработка ошибок</a>.
 </p></setup><setup><h3 id="render-html">Как рендерить чистый HTML?</h3><p>Никак! Рендерить HTML с помощью <code>res.render()</code> вообще не надо,
 если есть определённый файл, можно сделать <code>res.sendfile()</code> или
 если нужно отдавать много статики из папки, можно использовать прослойку <code>express.static()</code>

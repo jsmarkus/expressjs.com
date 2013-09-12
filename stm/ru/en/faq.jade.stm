@@ -183,7 +183,7 @@
 @
 @  p.
 @    View <a href="/guide.html#error-handling">error-handling</a> for more information.
-#    Подробнее тут <a href="/ru-guide.html#error-handling">обработка ошибок</a>.
+#    Подробнее тут <a href="./ru-guide.html#error-handling">обработка ошибок</a>.
 @
 @setup
 @  h3(id='render-html') How do I render plain HTML?

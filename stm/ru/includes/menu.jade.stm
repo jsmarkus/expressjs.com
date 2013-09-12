@@ -3,16 +3,16 @@
 @
 @nav.clearfix
 @  +item('/') Home
-#  +item('/ru-index.html') Главная
+#  +item('./ru-index.html') Главная
 @  +item('/api.html') API Reference
-#  +item('/ru-api.html') API
+#  +item('./ru-api.html') API
 @  +item('/guide.html') Guide
-#  +item('/ru-guide.html') Руководство
+#  +item('./ru-guide.html') Руководство
 @  +item('/applications.html') Applications
-#  +item('/ru-applications.html') Приложения
+#  +item('./ru-applications.html') Приложения
 @  +item('/community.html') Community
-#  +item('/ru-community.html') Сообщество
+#  +item('./ru-community.html') Сообщество
 @  +item('/faq.html') FAQ
-#  +item('/ru-faq.html') FAQ
+#  +item('./ru-faq.html') FAQ
 @
 @
