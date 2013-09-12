@@ -2,38 +2,38 @@ section
   h3(id='app.engine') app.engine(ext, callback)
 
   p.
-    Register the given template engine <code>callback</code> as <code>ext</code>
+    Регистрирует данный шаблонизатор <code>callback</code> для файлов с расширением <code>ext</code>
     
-    By default will <code>require()</code> the engine based on the
-    file extension. For example if you try to render
-    a "foo.jade" file Express will invoke the following internally,
-    and cache the <code>require()</code> on subsequent calls to increase
-    performance.
+    По умолчанию шаблонизатор реквайрится по имени, соответствующему
+    расширению файла. Например, если попытаться отрендерить
+    файл "foo.jade", Express внутри себя исполнит следующий код
+    (и закеширует <code>require()</code> для ускорения при следующих
+    вызовах):
 
   +js.
     app.engine('jade', require('jade').__express);
 
   p.
-    For engines that do not provide <code>.__express</code> out of the box -
-    or if you wish to "map" a different extension to the template engine
-    you may use this method. For example mapping the EJS template engine to
-    ".html" files:
+    Можно использовать этот метод для шаблонизаторов, не поддерживающих
+    <code>.__express</code> "из коробки" или для расширений,
+    отличных от имени шаблонизатора. Например, маппинг шаблонизатора EJS к
+    ".html" файлам:
   
   +js.
     app.engine('html', require('ejs').renderFile);
 
   p.
-    In this case EJS provides a <code>.renderFile()</code> method with
-    the same signature that Express expects: <code>(path, options, callback)</code>,
-    though note that it aliases this method as <code>ejs.__express</code> internally
-    so if you're using ".ejs" extensions you dont need to do anything.
+    В данном случае у EJS есть метод <code>.renderFile()</code>,
+    сигнатура которого соответствует тому, что ожидает Express: <code>(path, options, callback)</code>,
+    хотя у этого метода есть и псевдоним <code>ejs.__express</code>,
+    так что, его можно использовать и в автоматическом режиме для расширений ".ejs".
 
   p.
-    Some template engines do not follow this convention, the
-    <a href="https://github.com/visionmedia/consolidate.js">consolidate.js</a>
-    library was created to map all of node's popular template
-    engines to follow this convention, thus allowing them to
-    work seemlessly within Express.
+    Некоторые шаблонизаторы не следуют данному соглашению о вызове.
+    Для того, чтобы выровнять API популярных шаблонизаторов для node,
+    был придуман модуль <a href="https://github.com/visionmedia/consolidate.js">consolidate.js</a>
+    позволяющий им следовать соглашению
+    и прозрачно работать с Express.
 
   +js.
     var engines = require('consolidate');
