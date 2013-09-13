@@ -1,78 +1,53 @@
 @section
-!
 @  h3(id='res.cookie') res.cookie(name, value, [options])
-!
 @  p.
-!
 @    Set cookie <code>name</code> to <code>value</code>, where
-!
+#    Присваивает куки <code>name</code> значение <code>value</code>,
 @    which may be a string or object converted to JSON. The <code>path</code>
-!
+#    это может быть строка или объект, преобразовываемый в JSON. Путь <code>path</code>
 @    option defaults to "/".
-!
+#    по умолчанию равен "/".
 @
-!
 @  +js.
-!
 @    res.cookie('name', 'tobi', { domain: '.example.com', path: '/admin', secure: true });
-!
 @    res.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
-!
 @
-!
 @  p.
-!
 @    The <code>maxAge</code> option is a convenience option for setting "expires"
-!
+#    Опция <code>maxAge</code> нужна для установки "expires"
 @    relative to the current time in milliseconds. The following is equivalent to
-!
+#    относительно текущего времени в миллисекундах. Следующий пример равносилен
 @    the previous example.
-!
+#    предыдущему.
 @
-!
 @  +js.
-!
 @    res.cookie('rememberme', '1', { maxAge: 900000, httpOnly: true })
-!
 @
-!
 @  p.
-!
 @    An object may be passed which is then serialized as JSON, which is
-!
+#    Можно передавать объект, он будет преобразован в JSON, а затем
 @    automatically parsed by the <code>bodyParser()</code> middleware.
-!
+#    автоматически преобразован обратно в объект в прослойке <code>bodyParser()</code>.
 @
-!
 @  +js.
-!
 @    res.cookie('cart', { items: [1,2,3] });
-!
 @    res.cookie('cart', { items: [1,2,3] }, { maxAge: 900000 });
-!
 @
-!
 @  p.
-!
 @    Signed cookies are also supported through this method. Simply
-!
+#    Метод также поддерживает подписанные куки. Просто
 @    pass the <code>signed</code> option. When given <code>res.cookie()</code>
-!
+#    передайте опцию <code>signed</code>. Чтобы подписать значение, 
 @    will use the secret passed to <code>express.cookieParser(secret)</code>
-!
+#    res.cookie() будет использовать secret,
 @    to sign the value.
-!
+#    переданный в <code>express.cookieParser(secret)</code>.
 @
-!
 @  +js.
-!
 @    res.cookie('name', 'tobi', { signed: true });
-!
 @
-!
 @  p.
-!
 @    Later you may access this value through the <a href="#req.signedCookies">req.signedCookie</a>
-!
+#    Потом можно обращаться к этому значению через
 @    object.
-!
+#    объект <a href="#req.signedCookies">req.signedCookie</a>.
