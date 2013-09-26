@@ -1,76 +1,49 @@
 @section
-!
-@  h3(id='app-settings') settings
-!
+@  h3(id='app-settings') настройки
 @
-!
 @  p.
-!
 @    The following settings are provided to alter how Express will behave:
-!
+#    Поведение Express можно изменять с помощью следующих настроек:
 @
-!
 @  ul
-!
 @    li
-!
 @      code env 
-!
 @      | Environment mode, defaults to <code>process.env.NODE_ENV</code> or "development"
-!
+#      | Режим окружения, по умолчанию <code>process.env.NODE_ENV</code> или "development"
 @    li
-!
 @      code trust proxy 
-!
 @      | Enables reverse proxy support, disabled by default
-!
+#      | Включает поддержку реверс-прокси, по умолчанию выключено
 @    li
-!
 @      code jsonp callback name 
-!
 @      | Changes the default callback name of <code>?callback=</code>
-!
+#      | Изменяет имя коллбека для JSONP <code>?callback=</code>
 @    li
-!
 @      code json replacer 
-!
 @      | JSON replacer callback, null by default
 !
 @    li
-!
 @      code json spaces 
-!
 @      | JSON response spaces for formatting, defaults to <code>2</code> in development, <code>0</code> in production
-!
+#      | Количество отступов для форматирования JSON, по умолчанию <code>2</code> в режиме разработки, <code>0</code> в продакшн
 @    li
-!
 @      code case sensitive routing 
-!
 @      | Enable case sensitivity, disabled by default, treating "/Foo" and "/foo" as the same
-!
+#      | Включить чувствительность роутера к регистру, по умолчанию выключено (т.е. "/Foo" и "/foo" - это одно и то же)
 @    li
-!
 @      code strict routing 
-!
 @      | Enable strict routing, by default "/foo" and "/foo/" are treated the same by the router 
-!
+#      | Включает строгий роутинг, по умолчанию "/foo" и "/foo/" - это одно и то же
 @    li
-!
 @      code view cache 
-!
 @      | Enables view template compilation caching, enabled in production by default
-!
+#      | Включает кеширование шаблонов, по умолчанию включено в продакшн
 @    li
-!
 @      code view engine 
-!
 @      | The default engine extension to use when omitted
-!
+#      | Расширение файла шаблонов по умолчанию
 @    li
-!
 @      code views 
-!
 @      | The view directory path
-!
+#      | Путь к папке с шаблонами
 @    
-!
