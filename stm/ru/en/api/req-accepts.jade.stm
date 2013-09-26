@@ -1,78 +1,46 @@
 @section
-!
 @  h3(id='req.accepts') req.accepts(types)
-!
 @
-!
 @  p.
-!
 @    Check if the given <code>types</code> are acceptable, returning
-!
+#    Проверяет, принимает ли клиент заданные типы <code>types</code>.
 @    the best match when true, otherwise <code>undefined</code> - in which
-!
+#    Возвращает наилучший из приемлимых типов либо <code>undefined</code>.
 @    case you should respond with 406 "Not Acceptable".
-!
+#    В последнем случае следует ответить кодом 406 "Not Acceptable".
 @
-!
 @  p.
-!
 @    The <code>type</code> value may be a single mime type string
-!
+#    Значением <code>type</code> может быть просто MIME-тип в виде строки,
 @    such as "application/json", the extension name
-!
+#    например "application/json", расширение файла,
 @    such as "json", a comma-delimted list or an array. When a list
-!
+#    например "json", список, разделённый запятыми, либо массив. Если
 @    or array is given the <em>best</em> match, if any is returned.
-!
+#    передан список или массив типов, то в случае совпадений возвращается наиболее приемлимый из них.
 @
-!
 @  +js.
-!
 @    // Accept: text/html
-!
 @    req.accepts('html');
-!
 @    // => "html"
-!
 @  
-!
 @    // Accept: text/*, application/json
-!
 @    req.accepts('html');
-!
 @    // => "html"
-!
 @    req.accepts('text/html');
-!
 @    // => "text/html"
-!
 @    req.accepts('json, text');
-!
 @    // => "json"
-!
 @    req.accepts('application/json');
-!
 @    // => "application/json"
-!
 @  
-!
 @    // Accept: text/*, application/json
-!
 @    req.accepts('image/png');
-!
 @    req.accepts('png');
-!
 @    // => undefined
-!
 @  
-!
 @    // Accept: text/*;q=.5, application/json
-!
 @    req.accepts(['html', 'json']);
-!
 @    req.accepts('html, json');
-!
 @    // => "json"
-!
 @
-!
