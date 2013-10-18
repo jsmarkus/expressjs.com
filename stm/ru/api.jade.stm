@@ -1,76 +1,43 @@
 @!!! 5
-!
 @html
-!
 @  head
-!
 @    title Express - api reference
-!
+#    title Express - справочник API
 @    include includes/head
-!
 @  body.inner
-!
 @    .bar
-!
 @    section#content
-!
 @      header
-!
 @        include includes/logo
-!
 @        active = '/api.html'
-!
 @        include includes/menu
-!
 @
-!
 @      include includes/mixins
-!
 @      
-!
 @      include en/api/menu
-!
 @
-!
 @      #right
-!
 @        include en/api/express
-!
 @
-!
 @        h2 Application
-!
+#        h2 Приложение (application)
 @        a(name='application')
-!
 @        include en/api/app
-!
 @      
-!
 @        h2 Request
-!
+#        h2 Запрос
 @        a(name='request')
-!
 @        include en/api/req
-!
 @
-!
 @        h2 Response
-!
+#        h2 Ответ
 @        a(name='response')
-!
 @        include en/api/res
-!
 @
-!
 @        h2 Middleware
-!
+#        h2 Прослойки
 @        a(name='middleware')
-!
 @        include en/api/middleware
-!
 @
-!
 @    include includes/footer
-!
 @
-!
