@@ -1,74 +1,48 @@
 @section
-!
 @  h3(id='app.locals') app.locals
-!
 @
-!
 @  p.
-!
 @    Application local variables are provided to all templates
-!
+#    Локальные переменные уровня приложения передаются всем
 @    rendered within the application. This is useful for providing
-!
+#    шаблонам данного приложения. Таким способом в шаблоны
 @    helper functions to templates, as well as app-level data.
-!
+#    можно передавать функции-хелперы и данные из приложения.
 @
-!
 @  +js.
-!
 @    app.locals.title = 'My App';
-!
+#    app.locals.title = 'Моё приложение';
 @    app.locals.strftime = require('strftime');
-!
 @
-!
 @  p.
-!
 @    The <code>app.locals</code> object is a JavaScript <code>Function</code>,
-!
+#    Объект <code>app.locals</code> - это функция,
 @    which when invoked with an object will merge properties into itself, providing
-!
+#    которая, если её вызвать с объектом, сольёт свойства объекта с самой собой
 @    a simple way to expose existing objects as local variables.
-!
+#    что позволяет легко публиковать существующие объекты в виде локальный переменных.
 @
-!
 @  +js.
-!
 @    app.locals({
-!
 @      title: 'My App',
-!
+#      title: 'Моё приложение',
 @      phone: '1-250-858-9990',
-!
 @      email: 'me@myapp.com'
-!
 @    });
-!
 @
-!
 @    app.locals.title
-!
 @    // => 'My App'
-!
+#    // => 'Моё приложение'
 @
-!
 @    app.locals.email
-!
 @    // => 'me@myapp.com'
-!
 @
-!
 @  p.
-!
 @    By default Express exposes only a single app-level local variable, <code>settings</code>.
-!
+#    По умолчанию Express публикует единственную локальную переменную уровня приложения - <code>settings</code>.
 @
-!
 @  +js.
-!
 @    app.set('title', 'My App');
-!
+#    app.set('title', 'Моё приложение');
 @    // use settings.title in a view
-!
 @    
-!
